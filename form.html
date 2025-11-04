@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+  <link rel="stylesheet" href="form.css">
+  <script type="module" src="form.js"></script>
+  <script type="module">
+    import {addItem} from './form.js';
+    window.addItem = addItem;
+  </script>
+</head>
+<body>
+  <label>Name</label>
+  <input type="text" id="name" placeholder="Your name">
+  <label>Type of Firing</label>
+  <input type="text" id="firingType" placeholder="Type of firing (First Bisque, Second Bisque, or Glaze)">
+  <label>Signature</label>
+  <input type="text" id="signature" placeholder="Signature">
+  <label>Image</label>
+  <input type="text" id="image" placeholder="Image">
+  <button id="submit" onclick="addItem();">Submit</button>
+
+</body>
+</html>
