@@ -4,27 +4,46 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Form</title>
-  <link rel="stylesheet" href="form.css" >
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="cameratest.css" >
 </head>
 <body>
 
-<div type="title" id="title">Camera Page</div>
+<div type="title" id="title">
+  Camera Page
+</div>
 
 <div class="camera">
-    <video class="video"></video>
-    <button class="camera-button"></button>   
+    <video class="video">
+
+    </video>
+
+    <button class="camera-button">
+       
+    </button>
+    
 </div>
 
 <canvas class="canvas"></canvas>
+
   <script src="cameratest.js"></script>
-  <label>Capture Photo</label>
+
+  
+
+
+  
   <br>
   <input
+  class="image-input"
   type="file"
   id="user"
   capture="user"
   accept="image/*"
   >
+
+  <button onclick="submitPicture()" id="submit-button">Submit Image</button>
+ 
+
+
 </body>
 </html>
