@@ -64,5 +64,5 @@ export const signup = async function() {
         email: email,
         password: password,
     })
-    window.location.href = "index.html"
+    window.location.href = "login.html"
 }
