@@ -6,24 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio</title>
   <link rel="stylesheet" href="cameratest.css" >
+  <link rel="icon" href="greenLogo.png" type="image/png">
+
 </head>
 <body>
 
 <div type="title" id="title">
-  Camera Page
+
 </div>
+
+<div class="photo">
 
 <div class="camera">
-    <video class="video">
+      <video class="video">
 
-    </video>
+      </video>
 
-    <button class="camera-button">
-       
-    </button>
-    
+      <button class="camera-button">Capture
+        
+      </button>
+      <canvas class="canvas"></canvas>
+
+      
+  </div>
+
 </div>
 
+<<<<<<< Updated upstream
 <canvas class="canvas"></canvas>
   <script src="cameratest.js" type="module"></script>
   <br>
@@ -35,5 +44,30 @@
   accept="image/*"
   >
   <button onclick="submitPicture()" id="submit-button">Submit Image</button>
+=======
+  <script src="cameratest.js"></script>
+
+  
+
+
+  <div class="bottom"> 
+    <div class="submission">
+  
+      <br>
+      <input 
+      class="image-input"
+      type="file"
+      id="user"
+      capture="user"
+      accept="image/*"
+      >
+
+      <button onclick="submitPicture()" id="submit-button" class="submit-button">Submit Image</button>
+    </div>
+  </div>
+ 
+
+
+>>>>>>> Stashed changes
 </body>
 </html>

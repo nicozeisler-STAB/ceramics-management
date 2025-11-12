@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Form</title>
   <link rel="stylesheet" href="form.css">
+  <link rel="icon" href="greenLogo.png" type="image/png">
+  <h1>Cermaics Manager</h1>
+
   <script type="module" src="form.js"></script>
   <script type="module">
     import {addItem} from './form.js'
@@ -12,6 +15,7 @@
   </script>
 </head>
 <body>
+<<<<<<< Updated upstream
   <label for="firingTypes">Choose firing type:</label>
   <select id="firingTypes" name="firingTypes">
     <option value="firstBisque">First Bisque</option>
@@ -35,5 +39,19 @@
     <option value="yes">Yes</option>
   </select>
   <button type="submit" onclick="addItem()">Submit</button>
+=======
+  <div class="fields">
+    <label>Name</label>
+    <input type="text" id="name" placeholder="Your name">
+    <label>Type of Firing</label>
+    <input type="text" id="firingType" placeholder="Type of firing (First Bisque, Second Bisque, or Glaze)">
+    <label>Signature</label>
+    <input type="text" id="signature" placeholder="Signature">
+    <label>Image</label>
+    <input type="text" id="image" placeholder="Image">
+    <button id="submit" onclick="addItem();">Submit</button>
+  </div>
+
+>>>>>>> Stashed changes
 </body>
 </html>

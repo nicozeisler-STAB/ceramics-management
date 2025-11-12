@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  <link rel="stylesheet" href="login.css">
+  <link rel="icon" href="greenLogo.png" type="image/png">
+  <script type="module">
+    import {login} from './login.js';
+    window.login = login;
+  </script>
+</head>
+<h1>Cermaics Manager</h1>
+
+<body>
+  <div class="info">
+    <label>Email: </label>
+    <input type="text" id="email" placeholder="Your Email" class="email">
+    <button id="submit" onclick="login();">Submit</button>
+  </div>
+</body>
+</html>
