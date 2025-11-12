@@ -6,12 +6,13 @@
   <title>Form</title>
   <link rel="stylesheet" href="form.css">
   <link rel="icon" href="greenLogo.png" type="image/png">
-  <h1>Cermaics Manager</h1>
+  <h1>Ceramics Manager</h1>
 
   <script type="module" src="form.js"></script>
   <script type="module">
-    import {addItem} from './form.js'
-    window.addItem = addItem;
+    import {addItem, addArtShow} from './form.js'
+    window.addItem = addItem
+    window.addArtShow = addArtShow
   </script>
 </head>
 <body>
@@ -33,11 +34,7 @@
       name="image"
       accept=".jpg, .jpeg, .png"/>
   <br>
-  <label for="artShow">Do you want to submit this to the art show(ONLY DO THIS FOR THE FINAL FIRING):</label>
-  <select id="artShow" name="artShow">
-    <option value="no">No</option>
-    <option value="yes">Yes</option>
-  </select>
+  <div id="artShowContainer"></div>
   <button type="submit" onclick="addItem()">Submit</button>
 =======
   <div class="fields">
