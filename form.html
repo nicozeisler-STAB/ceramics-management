@@ -7,20 +7,33 @@
   <link rel="stylesheet" href="form.css">
   <script type="module" src="form.js"></script>
   <script type="module">
-    import {addItem} from './form.js';
+    import {addItem} from './form.js'
     window.addItem = addItem;
   </script>
 </head>
 <body>
-  <label>Name</label>
-  <input type="text" id="name" placeholder="Your name">
-  <label>Type of Firing</label>
-  <input type="text" id="firingType" placeholder="Type of firing (First Bisque, Second Bisque, or Glaze)">
+  <label for="firingTypes">Choose firing type:</label>
+  <select id="firingTypes" name="firingTypes">
+    <option value="firstBisque">First Bisque</option>
+    <option value="secondBisque">Second Bisque</option>
+    <option value="glaze">Glaze</option>
+  </select>
+  <br>
   <label>Signature</label>
   <input type="text" id="signature" placeholder="Signature">
+  <br>
   <label>Image</label>
-  <input type="text" id="image" placeholder="Image">
-  <button id="submit" onclick="addItem();">Submit</button>
-
+  <input
+      type="file"
+      id="image"
+      name="image"
+      accept=".jpg, .jpeg, .png"/>
+  <br>
+  <label for="artShow">Do you want to submit this to the art show(ONLY DO THIS FOR THE FINAL FIRING):</label>
+  <select id="artShow" name="artShow">
+    <option value="no">No</option>
+    <option value="yes">Yes</option>
+  </select>
+  <button type="submit" onclick="addItem()">Submit</button>
 </body>
 </html>

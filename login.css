@@ -5,3 +5,24 @@ html {
 body {
   position: relative;
 }
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #32cf30;
+  font-size: 2.5em;
+  scroll-margin-top: 100px;
+}
+
+.sectionTitle::before,
+.sectionTitle::after {
+  content: "";
+  flex: 1;
+  border-bottom: 2px solid #ccc;
+  margin: 0.5em;
+}
+
+.sectionTitle span {
+  white-space: nowrap;
+}

@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import {getFirestore, collection, doc, getDocs, addDoc, updateDoc, query, where, deleteDoc} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+import {getFirestore, collection, doc, getDocs, addDoc, query, deleteDoc} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCAOfNj92YHafyu2sAdYSSsAPf5RcxZ2wg",
@@ -15,14 +15,15 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export const showItems = async function(firingType){
-  const column = document.getElementById('infoColumn')
+  const column = document.getElementById("infoColumn")
   const snapshot = await getDocs(query(collection(db, firingType)))
   snapshot.forEach(item => {
     const info = item.data()
-    const box = document.createElement('div')
+    const box = document.createElement("div")
     box.className = 'info-box'
     box.innerHTML = `
       <div class="info-title">${info.studentName}</div>
+      <div class="img" src="${info.image}"></<div>
       <div class="info-detail">${info.signature}</div>
     `
     const startFiringButton = document.createElement("button")
@@ -45,14 +46,15 @@ export const showItems = async function(firingType){
 
 export const showFirings = async function() {
   // Email to notify student when complete
-  const column = document.getElementById('infoColumn')
+  const column = document.getElementById("infoColumn")
   const snapshot = await getDocs(query(collection(db, "firing")))
   snapshot.forEach(item => {
     const info = item.data()
-    const box = document.createElement('div')
+    const box = document.createElement("div")
     box.className = 'info-box'
     box.innerHTML = `
       <div class="info-title">${info.studentName}</div>
+      <div class="img" src="${info.image}"></<div>
       <div class="info-detail">${info.signature}</div>
     `
     const completeButton = document.createElement("button")
@@ -75,6 +77,7 @@ export const showArtShow = async function() {
     box.className = "info-box"
     box.innerHTML = `
       <div class="info-title">${info.studentName}</div>
+      <div class="img" src="${info.image}"></<div>
       <div class="info-detail">${info.signature}</div>
     `
   column.appendChild(box)

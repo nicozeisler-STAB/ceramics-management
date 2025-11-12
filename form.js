@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import {getFirestore, collection, doc, getDocs, addDoc, updateDoc, query, where, deleteDoc} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+import {getFirestore, collection, addDoc} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCAOfNj92YHafyu2sAdYSSsAPf5RcxZ2wg",
@@ -16,15 +16,26 @@ const db = getFirestore(app);
 
 export const addItem = async function() {
   const username = await document.getElementById("name").value
-  const firingType = await document.getElementById("firingType").value
-  const signature = await document.getElementById("signature").value
+  const firingType = await document.getElementById("firingTypes").value
+  const userSignature = await document.getElementById("signature").value
   const image = await document.getElementById("image").value
-  const docRef = await addDoc(collection(db, firingType), {
-    studentName: username,
-    image: image,
-    signature: signature,
+  const inartShow = await document.getElementById("artShow").value
+  console.log(inartShow)
+  if (inartShow == "yes") {
+    await addDoc(collection(db, "artShow"), {
+      studentName: username,
+      image: "NA",
+      signature: userSignature,
+      email: sessionStorage.getItem("email"),
+      status: "unfired",
+    })
+  }
+  await addDoc(collection(db, firingType), {
+    studentName: sessionStorage.getItem("name"),
+    image: "NA",
+    signature: userSignature,
     email: sessionStorage.getItem("email"),
-    status: "unfired"
+    status: "unfired",
   })
   sessionStorage.setItem("firingType", firingType)
   window.location.href = "status.html"
