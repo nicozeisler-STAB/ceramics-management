@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import {getFirestore, collection, addDoc} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+import {getFirestore, collection, addDoc, serverTimestamp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCAOfNj92YHafyu2sAdYSSsAPf5RcxZ2wg",
@@ -19,16 +19,15 @@ export const addItem = async function() {
   const firingType = await document.getElementById("firingTypes").value
   const userSignature = await document.getElementById("signature").value
   const image = await document.getElementById("image").value
-  const inartShow = await document.getElementById("artShow").value
-  console.log(inartShow)
-  if (inartShow == "yes") {
-    await addDoc(collection(db, "artShow"), {
-      studentName: username,
-      image: "NA",
-      signature: userSignature,
-      email: sessionStorage.getItem("email"),
-      status: "unfired",
-    })
+  const inArtShow = await document.getElementById("artShow")
+  if (inArtShow != null) {
+    if (inArtShow.value == "yes") {
+      await addDoc(collection(db, "artShow"), {
+        studentName: username,
+        image: "NA",
+        signature: userSignature,
+      })
+    }
   }
   await addDoc(collection(db, firingType), {
     studentName: sessionStorage.getItem("name"),
@@ -36,7 +35,28 @@ export const addItem = async function() {
     signature: userSignature,
     email: sessionStorage.getItem("email"),
     status: "unfired",
+    createdAt: serverTimestamp
   })
   sessionStorage.setItem("firingType", firingType)
   window.location.href = "status.html"
+}
+
+export const addArtShow = function() {
+  if (document.getElementById("firingTypes").value == "glaze") {
+    const artShowLabel = document.createElement("label")
+    artShowLabel.innerHTML = "Would you like to submit your piece to the art show?"
+    const artShowSelect = document.createElement("select")
+    artShowSelect.id = "artShow"
+    const no = document.createElement("option")
+    no.value = "no"
+    no.text = "No"
+    artShowSelect.appendChild(no)
+    const yes = document.createElement("option")
+    yes.value = "yes"
+    yes.text = "Yes"
+    artShowSelect.appendChild(yes)  
+    const container = document.getElementById("artShowContainer")
+    container.appendChild(artShowLabel)
+    container.appendChild(artShowSelect)
+  }
 }
