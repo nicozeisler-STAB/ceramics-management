@@ -25,7 +25,7 @@ export const login = async function() {
                     window.location.href = "firstBisque.html"
                 }
                 else {
-                    studentLogin(email)
+                    studentLogin(doc, email)
                 }
             }
             else {
@@ -39,7 +39,7 @@ export const login = async function() {
     }
 }
 
-async function studentLogin(email) {
+async function studentLogin(doc, email) {
     const firingTypes = ["glaze", "firstBisque", "secondBisque"]
     for (const firingType of firingTypes) {
         const snapshot = await getDocs(query(collection(db, firingType), where("email", "==", email)))
