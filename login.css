@@ -25,6 +25,7 @@ body {
 }
 
 button{
+  margin-top: 2%;
   background-color: #edefd0;
   border-radius: 10px;
   border: none;
@@ -45,9 +46,12 @@ input[type=text]{
   outline: none;
   border-style: solid;
   transition: 0.5s ease;
+  box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.172);
+  border: none;
   
 }
 
 input[type=text]:focus {
-  border-style: dashed;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.172);
+
 }
