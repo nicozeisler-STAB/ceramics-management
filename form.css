@@ -19,7 +19,7 @@ body {
   gap: 3%;
   align-items: center;
   height: 300px;
-  width: 40%;
+  width: 45%;
   border-radius: 20px;
   box-shadow: 2px 6px 8px rgba(0,0,0,0.1);
 
@@ -39,7 +39,6 @@ button:hover{
 }
 
 input[type=text]{
-  border-width: 1px;
   border-radius: 10px;
   height: 10px;
   width: 150px;
@@ -47,9 +46,40 @@ input[type=text]{
   outline: none;
   border-style: solid;
   transition: 0.5s ease;
+  box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.172);
+  border: none;
   
 }
 
 input[type=text]:focus {
   border-style: dashed;
+}
+
+input[type=file] {
+  width: 30%;
+
+}
+
+input[type="file"]::file-selector-button {
+    padding: 1%;
+    border-radius: 10px;
+    background-color: white;
+    border-width: 1px;
+    transition: transform .3s;
+    box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.172);
+    border: none;
+
+  }
+
+input[type="file"]::file-selector-button:hover{
+    transform: translateY(-7%);
+
+}
+
+select{
+  border-radius: 10px;
+  padding: 1%;
+  border:none;
+  box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.172);
+
 }
