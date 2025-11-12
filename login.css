@@ -1,32 +1,6 @@
-html {
-  scroll-behavior: smooth;
-}
 
 body {
   position: relative;
-<<<<<<< Updated upstream
-}
-
-.sectionTitle {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #32cf30;
-  font-size: 2.5em;
-  scroll-margin-top: 100px;
-}
-
-.sectionTitle::before,
-.sectionTitle::after {
-  content: "";
-  flex: 1;
-  border-bottom: 2px solid #ccc;
-  margin: 0.5em;
-}
-
-.sectionTitle span {
-  white-space: nowrap;
-=======
   background-color: #D0D1AC;
 
   flex-direction: column;
@@ -39,7 +13,7 @@ body {
 
 .info{
   background-color: #bdbe9b7f;
-  margin-top: 10%;
+  margin-top: 7%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,12 +21,10 @@ body {
   height: 200px;
   width: 40%;
   border-radius: 20px;
-  box-shadow: 2px 6px 8px rgba(0,0,0,0.1);
-
+  gap: 3%;
 }
 
 button{
-  margin-top: 2%;
   background-color: #edefd0;
   border-radius: 10px;
   border: none;
@@ -78,5 +50,4 @@ input[type=text]{
 
 input[type=text]:focus {
   border-style: dashed;
->>>>>>> Stashed changes
 }
