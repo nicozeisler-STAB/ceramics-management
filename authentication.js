@@ -22,6 +22,7 @@ export const login = async function() {
         snapshot.forEach(doc => {
             if (password == doc.data().password) {
                 if (email == "sbrodie@stab.org") {
+                    sessionStorage.setItem("credentialed", true)
                     window.location.href = "firstBisque.html"
                 }
                 else {
@@ -46,6 +47,7 @@ async function studentLogin(doc, email) {
         if (!snapshot.empty) {
             sessionStorage.setItem("email", email)
             sessionStorage.setItem("firingType", firingType)
+            sessionStorage.setItem("credentialed", true)
             window.location.href = "status.html"
             return;
         }
