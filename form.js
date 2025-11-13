@@ -33,7 +33,7 @@ export const addItem = async function() {
   if (inArtShow != null) {
     if (inArtShow.value == "yes") {
       await addDoc(collection(db, "artShow"), {
-        studentName: sessionStorage.getItem("name),
+        studentName: sessionStorage.getItem("name"),
         image: imageString,
         signature: userSignature,
       })
