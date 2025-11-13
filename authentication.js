@@ -40,7 +40,7 @@ export const login = async function() {
 }
 
 async function studentLogin(doc, email) {
-    const firingTypes = ["glaze", "firstBisque", "secondBisque"]
+    const firingTypes = ["glaze", "firstBisque", "secondBisque", "firing"]
     for (const firingType of firingTypes) {
         const snapshot = await getDocs(query(collection(db, firingType), where("email", "==", email)))
         if (!snapshot.empty) {
