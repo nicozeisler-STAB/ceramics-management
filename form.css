@@ -1,7 +1,7 @@
 
 body {
   position: relative;
-  background-color: #D0D1AC;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,24 +10,11 @@ body {
 
 }
 
-.fields{
-  background-color: #bdbe9b7f;
-  margin-top: 10%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 3%;
-  align-items: center;
-  height: 300px;
-  width: 45%;
-  border-radius: 20px;
-  box-shadow: 2px 6px 8px rgba(0,0,0,0.1);
 
-}
 
 button{
   margin-top: 2%;
-  background-color: #edefd0;
+  background-color: #ffffff;
   border-radius: 10px;
   border: none;
   box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.172);
@@ -42,17 +29,17 @@ input[type=text]{
   border-radius: 10px;
   height: 10px;
   width: 150px;
-  padding: 1%;
+  padding: 2%;
   outline: none;
   border-style: solid;
-  transition: 0.5s ease;
+  transition: 0.3s ease;
   box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.172);
   border: none;
   
 }
 
 input[type=text]:focus {
-  border-style: dashed;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.172);
 }
 
 input[type=file] {
@@ -82,4 +69,18 @@ select{
   border:none;
   box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.172);
 
+}
+
+.box{
+  font-size: larger;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 14.6%;
+  background-color: rgba(117, 211, 243, 0.328);
+  box-shadow: 6px 7px 8px rgba(0, 0, 0, 0.172);
+
+  border-radius: 20px;
+  padding: 4%;
+  width: 30%;
 }

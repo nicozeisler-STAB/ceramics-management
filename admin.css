@@ -5,14 +5,11 @@ html {
 
 body {
   position: relative;
-  background-color: #DDE0BD;
+  background-color: #ffffff;
   display: flex;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 }
-
-
-
 
 
 .bottom{
@@ -27,7 +24,7 @@ body {
 
 ul {
     margin-left: 28%;
-    background-color: #D0D1AC;
+    background-color: rgba(117, 211, 243, 0.328);
     width: 40%;
     position: fixed;
     padding-top: 1%;
@@ -37,7 +34,7 @@ ul {
     justify-content: center;
     border-radius: 50px;
     gap: 1%;
-
+    box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.172);
 
 }
 
@@ -58,7 +55,7 @@ ul li a {
 ul li a:hover {
   transform: translateY(-10%);
   color: white;
-  background-color: rgba(0, 0, 0, 0.314);
+    background-color: rgba(3, 41, 54, 0.228);
 }
 
 #infoColumn {
@@ -71,10 +68,10 @@ ul li a:hover {
 }
 
 .info-box {
-  background-color: #F7EDF0;
+  background-color: rgba(117, 211, 243, 0.328);
   border-radius: 8px 20px 8px 20px;
   padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
   transition: transform 0.2s ease;
   transition: background-color .7s ease;
   transition: box-shadow .6s ease;
@@ -84,9 +81,9 @@ ul li a:hover {
 
 .info-box:hover {
   box-shadow:
-    5px 5px 0 #edefd0,
-    10px 10px 0 rgb(189, 190, 155),
-    15px 15px 0 rgb(59, 82, 73);
+    5px 5px 0 #ac80a068,
+    10px 10px 0 #0470a643,
+    15px 15px 0 rgba(117, 211, 243, 0.403);
 }
 
 .info-title {
@@ -100,7 +97,7 @@ ul li a:hover {
 }
 
 button{
-  background-color: #edefd0;
+  background-color: #ffffff;
   border-radius: 10px;
   border: none;
   box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.172);

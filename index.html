@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Landing Page</title>
-  <link rel="stylesheet" href="form.css">
+  <link rel="stylesheet" href="login.css">
+  <link rel="icon" href="blueLogo.png" type="image/png">
   <script type="module">
     import {login} from './authentication.js';
     window.login = login;
@@ -13,11 +14,13 @@
 <body>
   <h2 class="sectionTitle"><span>Login</span></h2>
   <br>
-  <label>Email</label>
-  <input type="text" id="email" placeholder="Your Email">
-  <label>Password</label>
-  <input type="text" id="password" placeholder="Your Password">
-  <button type="submit" onclick="login()">Submit</button>
-  <button type="submit" onclick="window.location.href='signup.html'">Sign Up</button>
+  <div class="box">
+    <label>Email</label>
+    <input type="text" id="email" placeholder="Your Email">
+    <label>Password</label>
+    <input type="text" id="password" placeholder="Your Password">
+    <button type="submit" onclick="login()">Submit</button>
+    <button type="submit" onclick="window.location.href='signup.html'">Sign Up</button>
+  </div>
 </body>
 </html>
