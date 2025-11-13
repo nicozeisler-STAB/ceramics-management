@@ -14,23 +14,34 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+function fileTobase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+        reader.readAsDataURL(file);
+    }
+)};
+
 export const addItem = async function() {
   const firingType = await document.getElementById("firingTypes").value
   const userSignature = await document.getElementById("signature").value
-  const image = await document.getElementById("image").value
+  const fileInput = await document.getElementById("image")
   const inArtShow = await document.getElementById("artShow")
+  const image = fileInput.files[0]
+  const imageString = await fileTobase64(image)
   if (inArtShow != null) {
     if (inArtShow.value == "yes") {
       await addDoc(collection(db, "artShow"), {
         studentName: sessionStorage.getItem("name),
-        image: "NA",
+        image: imageString,
         signature: userSignature,
       })
     }
   }
   await addDoc(collection(db, firingType), {
     studentName: sessionStorage.getItem("name"),
-    image: "NA",
+    image: imageString,
     signature: userSignature,
     email: sessionStorage.getItem("email"),
     status: "unfired",
