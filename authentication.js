@@ -22,6 +22,7 @@ export const login = async function() {
         snapshot.forEach(doc => {
             if (password == doc.data().password) {
                 if (email == "sbrodie@stab.org") {
+                    sessionStorage.setItem("credentialed", true)
                     window.location.href = "firstBisque.html"
                 }
                 else {
@@ -40,12 +41,13 @@ export const login = async function() {
 }
 
 async function studentLogin(doc, email) {
-    const firingTypes = ["glaze", "firstBisque", "secondBisque"]
+    const firingTypes = ["glaze", "firstBisque", "secondBisque", "firing"]
     for (const firingType of firingTypes) {
         const snapshot = await getDocs(query(collection(db, firingType), where("email", "==", email)))
         if (!snapshot.empty) {
             sessionStorage.setItem("email", email)
             sessionStorage.setItem("firingType", firingType)
+            sessionStorage.setItem("credentialed", true)
             window.location.href = "status.html"
             return;
         }
