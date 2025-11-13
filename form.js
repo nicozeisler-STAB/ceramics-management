@@ -15,7 +15,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export const addItem = async function() {
-  const username = await document.getElementById("name").value
   const firingType = await document.getElementById("firingTypes").value
   const userSignature = await document.getElementById("signature").value
   const image = await document.getElementById("image").value
@@ -23,7 +22,7 @@ export const addItem = async function() {
   if (inArtShow != null) {
     if (inArtShow.value == "yes") {
       await addDoc(collection(db, "artShow"), {
-        studentName: username,
+        studentName: sessionStorage.getItem("name),
         image: "NA",
         signature: userSignature,
       })
