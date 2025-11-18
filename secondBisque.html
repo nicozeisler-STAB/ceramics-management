@@ -10,8 +10,12 @@
     import {showItems} from './admin.js';
     window.showItems = showItems;
   </script>
+  <script type="module">
+    import {authenticate} from './authentication.js'
+    window.authenticate = authenticate
+  </script>
 </head>
-<body onload="showItems('secondBisque')">
+<body onload="authenticate();showItems('secondBisque')">
   <ul>
     <li><a href="firstBisque.html">First Bisque</a></li>
     <li><a href="secondBisque.html">Second Bisque</a></li>
