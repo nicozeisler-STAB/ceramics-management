@@ -14,6 +14,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+export const authenticate = async function() {
+    const email = sessionStorage.getItem("email")
+    if (email == null) {
+        window.location.href = "index.html"
+    }
+} 
+
 export const login = async function() {
     const email = document.getElementById("email").value
     const password = document.getElementById("password").value
