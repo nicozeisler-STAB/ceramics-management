@@ -10,9 +10,13 @@
     import {showItems} from './admin.js';
     window.showItems = showItems;
   </script>
+    <script type="module" src="authentication.js"></script>
+  <script type="module">
+    import {authenticate} from './authentication.js'
+    window.authenticate = authenticate
+  </script>
 </head>
-<body onload="showItems('glaze')">
-
+<body onload="authenticate(); showItems('glaze')">
     <ul>
       <li><a href="firstBisque.html">First Bisque</a></li>
       <li><a href="secondBisque.html">Second Bisque</a></li>
