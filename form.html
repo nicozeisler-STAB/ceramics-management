@@ -12,8 +12,13 @@
     window.addItem = addItem
     window.addArtShow = addArtShow
   </script>
+    <script type="module" src="authentication.js"></script>
+  <script type="module">
+    import {authenticate} from './authentication.js'
+    window.authenticate = authenticate
+  </script>
 </head>
-<body>
+<body onload="authenticate()">
   <div class="box">
     <label for="firingTypes">Choose firing type:</label>
     <select id="firingTypes" name="firingTypes" onchange="addArtShow()">
