@@ -10,8 +10,13 @@
     import {showFirings} from './admin.js';
     window.showFirings = showFirings;
   </script>
+    <script type="module" src="authentication.js"></script>
+  <script type="module">
+    import {authenticate} from './authentication.js'
+    window.authenticate = authenticate
+  </script>
 </head>
-<body onload="showFirings()">
+<body onload="authenticate(); showFirings()">
   <ul>
     <li><a href="firstBisque.html">First Bisque</a></li>
     <li><a href="secondBisque.html">Second Bisque</a></li>
