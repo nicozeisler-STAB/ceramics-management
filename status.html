@@ -6,13 +6,16 @@
   <title>Status</title>
   <link rel="stylesheet" href="status.css">
   <link rel="icon" href="blueLogo.png" type="image/png">
-
+  <script type="module">
+    import {authenticate} from './authentication.js'
+    window.authenticate = authenticate
+  </script>
   <script type="module">
     import {getStatus} from './status.js';
     window.getStatus = getStatus;
   </script>
 </head>
-<body>
+<body onload="authenticate()">
 
 </body>
 </html>
