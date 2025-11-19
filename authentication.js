@@ -15,8 +15,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export const authenticate = async function() {
-    const email = sessionStorage.getItem("email")
-    if (email == null) {
+    const credentialed = sessionStorage.getItem("credentialed")
+    if (credentialed == null) {
         window.location.href = "index.html"
     }
 } 
