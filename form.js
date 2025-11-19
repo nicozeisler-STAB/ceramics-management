@@ -34,7 +34,7 @@ export const addItem = async function() {
     if (inArtShow.value == "yes") {
       await addDoc(collection(db, "artShow"), {
         studentName: sessionStorage.getItem("name"),
-        image: 'NA',
+        image: imageString,
         signature: userSignature,
       })
     }
@@ -45,7 +45,7 @@ export const addItem = async function() {
     signature: userSignature,
     email: sessionStorage.getItem("email"),
     status: "unfired",
-    createdAt: serverTimestamp
+    createdAt: serverTimestamp()
   })
   sessionStorage.setItem("firingType", firingType)
   window.location.href = "status.html"
