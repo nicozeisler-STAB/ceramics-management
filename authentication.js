@@ -16,9 +16,9 @@ const db = getFirestore(app);
 
 export const authenticate = async function() {
     const credentialed = sessionStorage.getItem("credentialed")
-    if (credentialed == null) {
-        window.location.href = "index.html"
-    }
+    // if (credentialed == null) {
+    //     window.location.href = "index.html"
+    // }
 } 
 
 export const login = async function() {
