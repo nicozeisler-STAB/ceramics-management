@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import {getFirestore, collection, doc, getDocs, addDoc, query, deleteDoc} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+import {getFirestore, collection, doc, getDocs, addDoc, query, orderBy, deleteDoc} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCAOfNj92YHafyu2sAdYSSsAPf5RcxZ2wg",
@@ -16,7 +16,7 @@ const db = getFirestore(app);
 
 export const showItems = async function(firingType){
   const column = document.getElementById("infoColumn")
-  const snapshot = await getDocs(query(collection(db, firingType)))
+  const snapshot = await getDocs(query(collection(db, firingType), orderBy("createdAt", "asc")))
   snapshot.forEach(item => {
     const info = item.data()
     const box = document.createElement("div")
