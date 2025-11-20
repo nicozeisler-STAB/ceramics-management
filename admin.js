@@ -62,6 +62,11 @@ export const showFirings = async function() {
     const completeButton = document.createElement("button")
     completeButton.innerHTML = "Mark Complete"
     completeButton.onclick = async function() {
+      const templateParams = {
+        email: info.email,
+        name: info.name
+      };
+      await emailjs.send("service_0ksgos9","template_4f2oqvu", templateParams);
       await deleteDoc(doc(db, "firing", item.id))
       location.reload()
     }
