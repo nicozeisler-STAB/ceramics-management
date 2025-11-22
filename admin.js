@@ -64,7 +64,7 @@ export const showFirings = async function() {
     completeButton.onclick = async function() {
       const templateParams = {
         email: info.email,
-        name: info.name
+        name: info.studentName
       };
       await emailjs.send("service_0ksgos9","template_4f2oqvu", templateParams);
       await deleteDoc(doc(db, "firing", item.id))
