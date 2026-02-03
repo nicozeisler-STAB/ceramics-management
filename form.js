@@ -14,22 +14,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-function fileTobase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = (error) => reject(error);
-        reader.readAsDataURL(file);
-    }
-)};
-
 export const addItem = async function() {
   const firingType = await document.getElementById("firingTypes").value
   const userSignature = await document.getElementById("signature").value
   const fileInput = await document.getElementById("image")
   const inArtShow = await document.getElementById("artShow")
   const image = fileInput.files[0]
-  const imageString = await fileTobase64(image)
+  const imageString = await fileToBase64(image)
   if (inArtShow != null) {
     if (inArtShow.value == "yes") {
       await addDoc(collection(db, "artShow"), {
@@ -70,3 +61,32 @@ export const addArtShow = function() {
     container.appendChild(artShowSelect)
   }
 }
+
+function fileToBase64(file, maxWidth = 800, maxHeight = 600, quality = 0.7) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      const img = new Image();
+      reader.onload = (e) => {
+        img.src = e.target.result;
+      };
+      reader.onerror = reject;
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        let width = img.width;
+        let height = img.height;
+        const widthRatio = maxWidth / width;
+        const heightRatio = maxHeight / height;
+        const ratio = Math.min(widthRatio, heightRatio, 1);
+        width = width * ratio;
+        height = height * ratio;
+        canvas.width = width;
+        canvas.height = height;
+        context.drawImage(img, 0, 0, width, height);
+        const dataUrl = canvas.toDataURL('image/jpeg', quality);
+        resolve(dataUrl);
+      };
+      img.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
