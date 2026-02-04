@@ -68,10 +68,16 @@ export const signup = async function() {
     const username = document.getElementById("name").value
     const email = document.getElementById("email").value
     const password = document.getElementById("password").value
-    await addDoc(collection(db, "accounts"), {
-        name: username,
-        email: email,
-        password: password,
-    })
-    window.location.href = "index.html"
+    const snapshot = await getDocs(query(collection(db, accounts), where("email", "==", email)))
+    if (snapshot.empty) {
+      await addDoc(collection(db, "accounts"), {
+          name: username,
+          email: email,
+          password: password,
+      })
+      window.location.href = "index.html"
+    }
+    else {
+      alert("Email already taken")
+    } 
 }
