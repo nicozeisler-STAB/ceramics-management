@@ -68,7 +68,7 @@ export const signup = async function() {
     const username = document.getElementById("name").value
     const email = document.getElementById("email").value
     const password = document.getElementById("password").value
-    const snapshot = await getDocs(query(collection(db, accounts), where("email", "==", email)))
+    const snapshot = await getDocs(query(collection(db, "accounts"), where("email", "==", email)))
     if (snapshot.empty) {
       await addDoc(collection(db, "accounts"), {
           name: username,
