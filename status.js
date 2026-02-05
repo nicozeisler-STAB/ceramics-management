@@ -14,6 +14,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+function userName() {
+  const name = sessionStorage.getItem('name')
+  const div = document.getElementById("username");
+  div.textContent = "" + name;
+}
+
 export const getStatus = async function() {
   const email = sessionStorage.getItem("email")
   const firingType = sessionStorage.getItem("firingType")
@@ -31,4 +37,5 @@ export const getStatus = async function() {
     }
   });
 }
+userName();
 getStatus();
