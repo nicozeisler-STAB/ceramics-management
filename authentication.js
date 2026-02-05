@@ -52,7 +52,8 @@ async function studentLogin(doc, email) {
     for (const firingType of firingTypes) {
         const snapshot = await getDocs(query(collection(db, firingType), where("email", "==", email)))
         if (!snapshot.empty) {
-            sessionStorage.setItem("email", email)
+            sessionStorage.setItem("email", email);
+            sessionStorage.setItem("name", doc.data().name);
             sessionStorage.setItem("firingType", firingType)
             sessionStorage.setItem("credentialed", true)
             window.location.href = "status.html"
