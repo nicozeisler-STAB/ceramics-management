@@ -27,10 +27,15 @@ export const getStatus = async function() {
   snapshot.forEach((doc) => {
     const status = doc.data().status;
     if (status == "unfired") {
-      document.body.style.backgroundColor = "red"
+      const divVar2 = document.getElementById("centerbox");
+      divVar2.textContent = "Your piece has been submitted."
+      
+      //document.body.style.backgroundColor = "red"
     }
     if (status == "firing") {
-      document.body.style.backgroundColor = "yellow"
+      const divVar2 = document.getElementById("centerbox");
+      divVar2.textContent = "Your piece is firing.";
+      //document.body.style.backgroundColor = "red"
     }
     if (status == "fired") {
       document.body.style.backgroundColor = "green"
