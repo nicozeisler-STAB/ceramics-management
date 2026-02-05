@@ -14,6 +14,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+function userName() {
+  const name = sessionStorage.getItem('name')
+  const div = document.getElementById("username");
+  div.textContent = "" + name;
+}
+
 export const addItem = async function() {
   const firingType = await document.getElementById("firingTypes").value
   const userSignature = await document.getElementById("signature").value
@@ -90,3 +96,4 @@ function fileToBase64(file, maxWidth = 800, maxHeight = 600, quality = 0.7) {
       reader.readAsDataURL(file);
     });
   }
+userName();
