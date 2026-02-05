@@ -42,5 +42,5 @@ export const getStatus = async function() {
     }
   });
 }
-userName();
 getStatus();
+userName();
