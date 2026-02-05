@@ -6,6 +6,7 @@
   <title>Form</title>
   <link rel="stylesheet" href="form.css">
   <link rel="icon" href="blueLogo.png" type="image/png">
+
   <script type="module" src="form.js"></script>
   <script type="module">
     import {addItem, addArtShow} from './form.js'
@@ -16,29 +17,39 @@
     import {authenticate} from './authentication.js'
     window.authenticate = authenticate
   </script>
+  
 </head>
 <body onload="authenticate()">
-  <div class="box">
-    <label for="firingTypes">Choose firing type:</label>
-    <select id="firingTypes" name="firingTypes" onchange="addArtShow()">
-      <option value="firstBisque">First Bisque</option>
-      <option value="secondBisque">Second Bisque</option>
-      <option value="glaze">Glaze</option>
-    </select>
-    <br>
-    <label>Signature</label>
-    <input type="text" id="signature" placeholder="Signature">
-    <br>
-    <label>Image</label>
-    <input
-        type="file"
-        id="image"
-        name="image"
-        accept=".jpg, .jpeg, .png"/>
-    <br>
-    <div id="artShowContainer"></div>
-    </select>
-    <button type="submit" onclick="addItem()">Submit</button>
+  <div class="ryu" id="ryu">
+   <div class="username" id="username">
+    Text filla numero dos.
+  </div>
+  </div>
+
+  <div class="mainPage"> 
+    <div class="box">
+      <label for="firingTypes">Choose firing type:</label>
+      <select id="firingTypes" name="firingTypes" onchange="addArtShow()">
+        <option value="firstBisque">First Bisque</option>
+        <option value="secondBisque">Second Bisque</option>
+        <option value="glaze">Glaze</option>
+      </select>
+      <br>
+      <label>Signature</label>
+      <input type="text" id="signature" placeholder="Signature">
+      <br>
+      <label>Image</label>
+      <input
+          type="file"
+          id="image"
+          name="image"
+          accept=".jpg, .jpeg, .png"/>
+      <br>
+      <div id="artShowContainer"></div>
+      </select>
+      <button type="submit" onclick="addItem()">Submit</button>
+    </div>
   </div>
 </body>
 </html>
+
