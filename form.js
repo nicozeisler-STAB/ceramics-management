@@ -95,5 +95,5 @@ function fileToBase64(file, maxWidth = 800, maxHeight = 600, quality = 0.7) {
       img.onerror = reject;
       reader.readAsDataURL(file);
     });
+  userName();
   }
-userName();
