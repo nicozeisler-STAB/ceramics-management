@@ -48,6 +48,20 @@ export const login = async function() {
 }
 
 async function studentLogin(doc, email) {
+    const snapshot = await getDocs(query(collection(db, "rejected"), where("email", "==", email)))
+    if (!snapshot.empty) {
+        let reason
+        snapshot.forEach(async info => {
+            reason = info.text
+            await deleteDoc(doc(db, "rejected", info.id))
+        }); 
+        alert(reason)
+        sessionStorage.setItem("email", email)
+        sessionStorage.setItem("name", doc.data().name)
+        sessionStorage.setItem("credentialed", true)
+        window.location.href = "form.html"
+        return;
+    }
     const firingTypes = ["glaze", "firstBisque", "secondBisque", "firing"]
     for (const firingType of firingTypes) {
         const snapshot = await getDocs(query(collection(db, firingType), where("email", "==", email)))
@@ -62,6 +76,7 @@ async function studentLogin(doc, email) {
     }
     sessionStorage.setItem("email", email)
     sessionStorage.setItem("name", doc.data().name)
+  sessionStorage.setItem("credentialed", true)
     window.location.href = "form.html"
 }
 
