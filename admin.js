@@ -31,15 +31,27 @@ export const showItems = async function(firingType){
     startFiringButton.innerHTML = "Start Firing"
     startFiringButton.onclick = async function() {
       await addDoc(collection(db, "firing"), {
-          studentName: item.data().studentName,
-          image: item.data().image,
-          signature: item.data().signature,
-          email: item.data().email,
+          studentName: info.studentName,
+          image: info.image,
+          signature: info.signature,
+          email: info.email,
           status: "firing"
       })
       await deleteDoc(doc(db, firingType, item.id))
       location.reload()
     }
+    const rejectButton = document.createElement("button")
+    rejectButton.innerHTML = "Reject Request"
+    rejectButton.onclick = async function() {
+      const reason = prompt("What was wrong with this request?", "")
+      await addDoc(collection(db, "rejected"), {
+        text: reason,
+        email: info.email,
+      })
+      await deleteDoc(doc(db, firingType, item.id))
+      location.reload()
+    }
+    box.appendChild(rejectButton)
     box.appendChild(startFiringButton)
     column.appendChild(box)
   });
