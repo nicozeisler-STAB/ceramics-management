@@ -51,11 +51,11 @@ async function studentLogin(doc, email) {
     const snapshot = await getDocs(query(collection(db, "rejected"), where("email", "==", email)))
     if (!snapshot.empty) {
         let reason
-        snapshot.forEach(async info => {
+        snapshot.forEach(info => {
             reason = info.text
-            await deleteDoc(doc(db, "rejected", info.id))
+            alert(reason)
+            deleteDoc(doc(db, "rejected", info.id))
         }); 
-        alert(reason)
         sessionStorage.setItem("email", email)
         sessionStorage.setItem("name", doc.data().name)
         sessionStorage.setItem("credentialed", true)
