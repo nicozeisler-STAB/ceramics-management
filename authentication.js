@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import {getFirestore, collection, addDoc, getDocs, query, where, doc} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+import {getFirestore, collection, addDoc, deleteDoc, getDocs, query, where, doc} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCAOfNj92YHafyu2sAdYSSsAPf5RcxZ2wg",
@@ -51,10 +51,10 @@ async function studentLogin(doc, email) {
     const snapshot = await getDocs(query(collection(db, "rejected"), where("email", "==", email)))
     if (!snapshot.empty) {
         let reason
-        snapshot.forEach(info => {
+        snapshot.forEach(async info => {
             reason = info.text
             alert(reason)
-            deleteDoc(doc(db, "rejected", info.id))
+            await deleteDoc(doc(db, "rejected", info.id))
         }); 
         sessionStorage.setItem("email", email)
         sessionStorage.setItem("name", doc.data().name)
