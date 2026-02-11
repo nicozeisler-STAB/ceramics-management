@@ -67,7 +67,7 @@ export const getStatus = async function() {
     }
     const img = doc.data().image
     drawFileOnCanvas(dataURLtoFile(img, "image.png"))
-    sessionStorage.setItem("credentialed", false)
+    sessionStorage.setItem("credentialed", null)
   })
 }
 
