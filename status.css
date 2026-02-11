@@ -7,10 +7,37 @@ html {
   justify-content: right;
 }
 
-.username {
+p{
+  margin: 0;
   font-size: 22px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
+}
+
+img{
+  width: 250%;
+  height: auto;
+  transition: transform .3s ease;
+
+}
+
+img:hover{
+  transform: translateY(-5%);
+}
+a{
+  width: 1%;
+  margin-right: 2%;
+}
+.username {
+  width: 100%;
+  margin-top: 2%;
+  font-size: 22px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  display: flex;
+  float: left;
+  align-items: center;
+  margin-left: 2%;
 }
 
 
@@ -32,8 +59,8 @@ body {
 
 .centerbox{
   text-align: center;
-  background-color: #c0c0f6;
-  margin-top: 7%;
+  background-color: rgba(117, 211, 243, 0.328);
+  margin-top: 12%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,6 +72,12 @@ body {
   font-size: 22px;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
+  box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.167);
+  transition: transform .3s ease;
+}
+
+.centerbox:hover{
+  transform: translateY(-4%);
 }
 
 
