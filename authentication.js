@@ -50,17 +50,17 @@ export const login = async function() {
 async function studentLogin(doc, email) {
     const snapshot = await getDocs(query(collection(db, "rejected"), where("email", "==", email)))
     if (!snapshot.empty) {
-        let reason
-        snapshot.forEach(async info => {
-            reason = info.data().text
-            alert(reason)
-            await deleteDoc(doc(db, "rejected", info.id))
-        }); 
-        sessionStorage.setItem("email", email)
-        sessionStorage.setItem("name", doc.data().name)
-        sessionStorage.setItem("credentialed", true)
-        window.location.href = "form.html"
-        return;
+      let reason
+      for (const docSnap of snapshot.docs) {
+        const data = docSnap.data()
+        reason = data.text
+        alert(reason)
+        await deleteDoc(doc(db, "rejected", docSnap.id))
+      }
+      sessionStorage.setItem("email", email)
+      sessionStorage.setItem("name", doc.data().name)
+      sessionStorage.setItem("credentialed", "true")
+      window.location.href = "form.html"
     }
     const firingTypes = ["glaze", "firstBisque", "secondBisque", "firing"]
     for (const firingType of firingTypes) {
