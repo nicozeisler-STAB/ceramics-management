@@ -52,7 +52,7 @@ async function studentLogin(doc, email) {
     if (!snapshot.empty) {
         let reason
         snapshot.forEach(async info => {
-            reason = info.text
+            reason = info.data().text
             alert(reason)
             await deleteDoc(doc(db, "rejected", info.id))
         }); 
