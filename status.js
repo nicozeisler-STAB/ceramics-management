@@ -66,9 +66,8 @@ export const getStatus = async function() {
       document.body.style.backgroundColor = "green"
     }
     const img = doc.data().image
-    drawFileOnCanvas(dataURLtoFile(img, "image.png")) ;
-   
-    
+    drawFileOnCanvas(dataURLtoFile(img, "image.png"))
+    sessionStorage.setItem("credentialed", false)
   })
 }
 
