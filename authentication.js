@@ -16,9 +16,9 @@ const db = getFirestore(app);
 
 export const authenticate = async function() {
     const credentialed = sessionStorage.getItem("credentialed")
-    // if (credentialed == null) {
-    //     window.location.href = "index.html"
-    // }
+    if (credentialed == null) {
+        window.location.href = "index.html"
+    }
 } 
 
 export const login = async function() {
@@ -59,7 +59,7 @@ async function studentLogin(studentDoc, email) {
       }
       sessionStorage.setItem("email", email)
       sessionStorage.setItem("name", studentDoc.data().name)
-      sessionStorage.setItem("credentialed", "true")
+      sessionStorage.setItem("credentialed", true)
       window.location.href = "form.html"
     }
     const firingTypes = ["glaze", "firstBisque", "secondBisque", "firing"]
