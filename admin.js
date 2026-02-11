@@ -43,7 +43,7 @@ export const showItems = async function(firingType){
     const rejectButton = document.createElement("button")
     rejectButton.innerHTML = "Reject Request"
     rejectButton.onclick = async function() {
-      const reason = prompt("What was wrong with this request?", "")
+      const reason = prompt("What was wrong with this request?", "") || "Rejected for unspecified reason"
       await addDoc(collection(db, "rejected"), {
         text: reason,
         email: info.email,
@@ -51,8 +51,8 @@ export const showItems = async function(firingType){
       await deleteDoc(doc(db, firingType, item.id))
       location.reload()
     }
-    box.appendChild(rejectButton)
     box.appendChild(startFiringButton)
+    box.appendChild(rejectButton)
     column.appendChild(box)
   });
 }
