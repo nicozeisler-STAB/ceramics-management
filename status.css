@@ -22,7 +22,7 @@ img{
 }
 
 img:hover{
-  transform: translateY(-5%);
+  transform: translateY(-1.5%);
 }
 a{
   width: 1%;
@@ -76,7 +76,7 @@ body {
 }
 
 .centerbox:hover{
-  transform: translateY(-4%);
+  transform: translateY(-1%);
 }
 
 
