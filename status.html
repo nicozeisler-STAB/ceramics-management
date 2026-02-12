@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="status.css">
   <link rel="icon" href="blueLogo.png" type="image/png">
   <script type="module">
-    import {authenticate} from './authentication.js'
+    import {authenticate, logout} from './authentication.js'
     window.authenticate = authenticate
   </script>
   <script type="module">
@@ -16,9 +16,10 @@
   </script>
   <div class="center2" id="center2">
     <div class="username">
-      <a href="index.html" title="Log out">
+      <button type="button" onclick="logout();"> 
         <img src="user.jpg">
-      </a>
+        Log Out
+      </button>
       <p id="username"></p>
     </div>
   </div>
@@ -27,9 +28,5 @@
   <div class="center" id="center">
     <div class="centerbox" id="centerbox"></div>
   </div>
-  
-  
-
 </body>
 </html>
-
