@@ -89,7 +89,7 @@ async function studentLogin(studentDoc, email) {
 
 export const signup = async function() {
     const username = document.getElementById("name").value
-    if (!/^[A-Za-z]+$/.test(username)) {
+    if (!/^[A-Za-z\s]+$/.test(username)) {
       alert("Invalid Name")
       return
     }  
