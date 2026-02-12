@@ -17,11 +17,11 @@
     window.showFirings = showFirings;
   </script>
   <script type="module">
-    import {authenticate} from './authentication.js'
-    window.authenticate = authenticate
+    import {adminAuthenticate} from './authentication.js'
+    window.adminAuthenticate = adminAuthenticate
   </script>
 </head>
-<body onload="authenticate(); showFirings()">
+<body onload="adminAuthenticate(); showFirings()">
   <ul>
     <li><a href="firstBisque.html">First Bisque</a></li>
     <li><a href="secondBisque.html">Second Bisque</a></li>
