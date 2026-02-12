@@ -11,11 +11,11 @@
     window.showItems = showItems;
   </script>
   <script type="module">
-    import {authenticate} from './authentication.js'
-    window.authenticate = authenticate
+    import {adminAuthenticate} from './authentication.js'
+    window.adminAuthenticate = adminAuthenticate
   </script>
 </head>
-<body onload="authenticate();showItems('secondBisque')">
+<body onload="adminAuthenticate(); showItems("secondBisque")">
   <ul>
     <li><a href="firstBisque.html">First Bisque</a></li>
     <li><a href="secondBisque.html">Second Bisque</a></li>
