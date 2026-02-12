@@ -16,10 +16,17 @@ const db = getFirestore(app);
 
 export const authenticate = async function() {
     const credentialed = sessionStorage.getItem("credentialed")
-    if (credentialed == null) {
+    if (credentialed == null || credentialed != "we're in!") {
         window.location.href = "index.html"
     }
-} 
+}
+
+export const adminAuthenticate = async function() {
+    const credentialed = sessionStorage.getItem("credentialed")
+    if (credentialed == null || credentialed != "we're in admin!") {
+        window.location.href = "index.html"
+    }
+}
 
 export const login = async function() {
     const email = document.getElementById("email").value
@@ -29,7 +36,7 @@ export const login = async function() {
         snapshot.forEach(doc => {
             if (password == doc.data().password) {
                 if (email == "sbrodie@stab.org") {
-                    sessionStorage.setItem("credentialed", true)
+                    sessionStorage.setItem("credentialed", "we're in!")
                     window.location.href = "firstBisque.html"
                 }
                 else {
@@ -59,7 +66,7 @@ async function studentLogin(studentDoc, email) {
       }
       sessionStorage.setItem("email", email)
       sessionStorage.setItem("name", studentDoc.data().name)
-      sessionStorage.setItem("credentialed", true)
+      sessionStorage.setItem("credentialed", "we're in!")
       window.location.href = "form.html"
     }
     const firingTypes = ["glaze", "firstBisque", "secondBisque", "firing"]
@@ -69,20 +76,28 @@ async function studentLogin(studentDoc, email) {
             sessionStorage.setItem("email", email);
             sessionStorage.setItem("name", studentDoc.data().name);
             sessionStorage.setItem("firingType", firingType)
-            sessionStorage.setItem("credentialed", true)
+            sessionStorage.setItem("credentialed", "we're in!")
             window.location.href = "status.html"
             return;
         }
     }
     sessionStorage.setItem("email", email)
     sessionStorage.setItem("name", studentDoc.data().name)
-    sessionStorage.setItem("credentialed", true)
+    sessionStorage.setItem("credentialed", "we're in!")
     window.location.href = "form.html"
 }
 
 export const signup = async function() {
     const username = document.getElementById("name").value
+    if (!/^[A-Za-z]+$/.test(username)) {
+      alert("Invalid Name")
+      return
+    }  
     const email = document.getElementById("email").value
+    if (!email.includes("@")) {
+      alert("Invalid Email")
+      return
+    }
     const password = document.getElementById("password").value
     const snapshot = await getDocs(query(collection(db, "accounts"), where("email", "==", email)))
     if (snapshot.empty) {
