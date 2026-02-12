@@ -13,12 +13,12 @@
     window.addArtShow = addArtShow
   </script>
   <script type="module">
-    import {authenticate} from './authentication.js'
+    import {authenticate, logout} from './authentication.js'
     window.authenticate = authenticate
   </script>
     <div class="center2" id="center2">
     <div class="username">
-      <button type="button" onclick="logout();"> 
+      <button type="button" style="width:1%;margin-right:10%;" onclick="logout();"> 
         <img src="user.jpg">
         Log Out
       </button>
