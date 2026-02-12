@@ -112,3 +112,7 @@ export const signup = async function() {
       alert("Email already taken")
     } 
 }
+export const logout = async function() {
+    sessionStorage.setItem("credentialed", null)
+    sessionStorage.clear()
+}
