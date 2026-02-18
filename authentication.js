@@ -36,7 +36,7 @@ export const login = async function() {
         snapshot.forEach(doc => {
             if (password == doc.data().password) {
                 if (email == "sbrodie@stab.org") {
-                    sessionStorage.setItem("credentialed", "we're in!")
+                    sessionStorage.setItem("credentialed", "we're in admin!")
                     window.location.href = "firstBisque.html"
                 }
                 else {
@@ -113,7 +113,6 @@ export const signup = async function() {
     } 
 }
 export const logout = async function() {
-    sessionStorage.setItem("credentialed", null)
     sessionStorage.clear()
     window.location.href = "index.html"
 }
