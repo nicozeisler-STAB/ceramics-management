@@ -115,4 +115,5 @@ export const signup = async function() {
 export const logout = async function() {
     sessionStorage.setItem("credentialed", null)
     sessionStorage.clear()
+    window.location.href = "index.html"
 }
