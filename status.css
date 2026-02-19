@@ -1,12 +1,19 @@
+/*Style page for the HTML status page
+* Lovissa - created log out button and formatted it (edited lines 25-68)
+*/
+
+
 html {
   scroll-behavior: smooth;
 }
 
+/*formats the div for the logout button and username*/
 .center2 {
   display: flex;
   justify-content: left;
 }
 
+/*formats all the paragraph text*/
 p{
   font-size: 22px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -14,6 +21,7 @@ p{
   margin: 0;
 }
 
+/*formats the log out button (including the image and the "log out" text*/
 .button{
   margin-left: 2%;
   margin-right: 0;
@@ -23,17 +31,20 @@ p{
   transition: transform .3s ease;
 }
 
+/*animates the log out button on hover*/
 .button:hover{
   transform: translateY(-5%);
 }
 
-img{
+/*formats the log out button image*/
+.userImg{
   width: 100%;
   height: auto;
   margin:0;
 
 }
 
+/*formats the user's name*/
 .username {
   padding: 0;
   width: 100%;
@@ -45,26 +56,20 @@ img{
   gap: 0px;
   float: left;
   align-items: center;
-
 }
 
-
+/*formats the area beneath the username and log out button*/
 body {
   position: relative;
 }
 
-.section{
-  display: flex;
-  flex-direction: row;
-}
-
-
+/*formats the div that contains the box with the user's pottery image*/
 .center{
   display: flex;
   justify-content: center;
 }
 
-
+/*formats the div that contains the user's pottery image*/
 .centerbox{
   text-align: center;
   background-color: rgba(117, 211, 243, 0.328);
@@ -85,6 +90,7 @@ body {
   padding:2%;
 }
 
+/*creates the animation on hover for the image box*/
 .centerbox:hover{
   transform: translateY(-4%);
 }
