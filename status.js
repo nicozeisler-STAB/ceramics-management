@@ -14,15 +14,26 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
 /**
- * Username function which retrieves the user's name from session storage, creates
- * a div, and appends the username to that div.
+ * Username function retrieves the users name from session storage, and displays
+ *  that name to a paragraph tag in the upper corner of the status page.
  * @author Will Elias
- */
+ * */ 
 function userName() {
   const name = sessionStorage.getItem('name')
   const div = document.getElementById("username")
   div.textContent = "" + name
 }
+
+/**
+ * GetStatus function, which creates a variable for the piece the user submmitted, using their email and firing 
+ * type as values(which are both retrieved from session storage). The function then checks what the current status 
+ * of the object is, and based on whether its unfired, firing, or fired. If the status is unfired or firing the function
+ * will use the drawFileONCanvas function to display the imgae of the users piece, and additionally report what the status
+ * is above it (unfired, firing). If the piece is fired, this function wont do anything, as the user has no piece submitted 
+ * and thus would be brought to the form.html page.
+ * 
+ * @author Will Elias 
+ * */ 
 
 export const getStatus = async function() {
   const email = sessionStorage.getItem("email")
