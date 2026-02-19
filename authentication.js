@@ -1,5 +1,5 @@
-import {initializeApp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import {getFirestore, collection, addDoc, deleteDoc, getDocs, query, where, doc} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"
+import {getFirestore, collection, addDoc, deleteDoc, getDocs, query, where, doc} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"
 
 const firebaseConfig = {
   apiKey: "AIzaSyCAOfNj92YHafyu2sAdYSSsAPf5RcxZ2wg",
@@ -9,11 +9,15 @@ const firebaseConfig = {
   messagingSenderId: "1089998700895",
   appId: "1:1089998700895:web:03a77d724f88b03b8736ea",
   measurementId: "G-Q1W9FR3Z8C"
-};
+}
+const app = initializeApp(firebaseConfig)
+const db = getFirestore(app)
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
+/**
+ * Student authenticate functions that checks the user's session storage for credentials
+ * and sends them to the landing page if they are incorrect
+ * @author Nico Zeisler
+ */
 export const authenticate = async function() {
     const credentialed = sessionStorage.getItem("credentialed")
     if (credentialed == null || credentialed != "we're in!") {
@@ -21,6 +25,11 @@ export const authenticate = async function() {
     }
 }
 
+/**
+ * Admin authenticate functions that checks the user's session storage for credentials
+ * and sends them to the landing page if they are incorrect
+ * @author Nico Zeisler
+ */
 export const adminAuthenticate = async function() {
     const credentialed = sessionStorage.getItem("credentialed")
     if (credentialed == null || credentialed != "we're in admin!") {
@@ -28,6 +37,13 @@ export const adminAuthenticate = async function() {
     }
 }
 
+/**
+ * Receives inputs from the form and searches for the provided email in the accounts database.
+ * If the password matches any found student accounts it continues to studentLogin, otherwise it 
+ * alerts for unrecognized email or invalid password. If the password and email match Ms. Brodie's,
+ * it credentials the user and sends them to the first bisque page.
+ * @author Nico Zeisler
+ */
 export const login = async function() {
     const email = document.getElementById("email").value
     const password = document.getElementById("password").value
@@ -54,11 +70,19 @@ export const login = async function() {
     }
 }
 
+/**
+ * Helper function to setup the user's session storage with the necessary data and credentials
+ * and redirect them to the proper place depending on whether they currently have a submitted
+ * piece or not.
+ * @author Nico Zeisler
+ * @param studentDoc - The Firebase document with the student's account 
+ * @param {String} email - The student's email
+ */
 async function studentLogin(studentDoc, email) {
-    const snapshot = await getDocs(query(collection(db, "rejected"), where("email", "==", email)))
-    if (!snapshot.empty) {
+    const snap = await getDocs(query(collection(db, "rejected"), where("email", "==", email)))
+    if (!snap.empty) {
       let reason
-      for (const docSnap of snapshot.docs) {
+      for (const docSnap of snap.docs) {
         const data = docSnap.data()
         reason = data.text
         alert(reason)
@@ -78,7 +102,7 @@ async function studentLogin(studentDoc, email) {
             sessionStorage.setItem("firingType", firingType)
             sessionStorage.setItem("credentialed", "we're in!")
             window.location.href = "status.html"
-            return;
+            return
         }
     }
     sessionStorage.setItem("email", email)
@@ -87,6 +111,12 @@ async function studentLogin(studentDoc, email) {
     window.location.href = "form.html"
 }
 
+/**
+ * Signup function that takes user input from the form for name and email and checks to 
+ * see if they seem normal (i.e name is purely alphabetic) and alert otherwise. If everything
+ * was acceptable it adds the account to the database and redirects the user to login
+ * @author Nico Zeisler
+ */
 export const signup = async function() {
     const username = document.getElementById("name").value
     if (!/^[A-Za-z\s]+$/.test(username)) {
@@ -112,6 +142,11 @@ export const signup = async function() {
       alert("Email already taken")
     } 
 }
+
+/**
+ * Utility to clear the user's session storage and redirect them to the landing page
+ * @author Nico Zeisler
+ */
 export const logout = async function() {
     sessionStorage.clear()
     window.location.href = "index.html"
