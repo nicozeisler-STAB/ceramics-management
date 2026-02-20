@@ -50,7 +50,7 @@ export const showItems = async function(firingType){
     const rejectButton = document.createElement("button")
     rejectButton.innerHTML = "Reject Request"
     rejectButton.onclick = async function() {
-      const reason = prompt("What was wrong with this request?", "") || "unspecified reason"
+      const reason = prompt("This piece was rejected because:", "") || "of unspecified reasons"
       await addDoc(collection(db, "rejected"), {
         text: "Your piece was rejected because " + reason + ". Please resubmit with changes",
         email: info.email,
