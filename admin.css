@@ -1,8 +1,10 @@
+/*Style for all the admin pages: "firstBisque", "secondBisque", "glaze", "firing", "artShow*/
+
 html {
   scroll-behavior: smooth;
 }
 
-
+/*formatting the entire page*/
 body {
   position: relative;
   background-color: #ffffff;
@@ -11,17 +13,15 @@ body {
   justify-content: center;
 }
 
-
+/*formatting the div that contains everything below the nav bar*/
 .bottom{
   margin-top: 7%;
   width: 100vw;
   height: 100vh;
  }
 
-.infoColumn{
-  padding-bottom: 9%;
-}
 
+/*formatting the nav bar*/
 ul {
     background-color: rgba(117, 211, 243, 0.328);
     width: 40%;
@@ -39,6 +39,7 @@ ul {
     padding-right: 2%;
 }
 
+/*formatting the individual buttons on the nav bar*/
 ul li a {
 
     display: flex;
@@ -50,15 +51,26 @@ ul li a {
     border-radius: 20px;
     transition: color .4s ease, background-color .4s ease, transform .4s ease;
 
-
 }
 
 ul li a:hover {
   transform: translateY(-10%);
   color: white;
-    background-color: rgba(3, 41, 54, 0.228);
+  background-color: rgba(3, 41, 54, 0.228);
 }
 
+/*making the button for the current page remian seleted on the nav bar*/
+.current{
+  border-radius: 20px;
+  background-color: rgba(3, 41, 54, 0.228);
+  transition: background-color .3s ease;
+}
+
+.current:hover{
+  background-color: rgba(0, 0, 0, 0);
+}
+
+/*formtting the div that contains the students' submission cards*/
 #infoColumn {
   display: flex;
   align-items: center;
@@ -66,8 +78,11 @@ ul li a:hover {
   gap: 2rem;              
   margin: 3rem auto 0 auto;
   width: 40%; 
+  padding-bottom: 9%;
+
 }
 
+/*formatting the students' submission cards*/
 .info-box {
   background-color: rgba(117, 211, 243, 0.328);
   border-radius: 8px 20px 8px 20px;
@@ -88,16 +103,13 @@ ul li a:hover {
     15px 15px 0 rgba(117, 211, 243, 0.403);
 }
 
+/*formatting the title text on the students' cards*/
 .info-title {
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
-.info-detail {
-  font-size: 1rem;
-  color: #555;
-}
-
+/*formatting the "start firing" and "reject request" buttons*/
 button{
   background-color: #ffffff;
   border-radius: 10px;
