@@ -102,7 +102,8 @@ export const showFirings = async function() {
 
 /**
  * Queries firebase for all entries in the currently artShow collection, converts the base64 data
- * to a url using a helper function, and then adds it to a target canvas.
+ * to a url using a helper function, and then adds it to a target canvas. Also includes a remove
+ * button in case the admin does not approve of the piece or it was submitted accidentally
  * @author Nico Zeisler
  */
 export const showArtShow = async function() {
@@ -118,7 +119,14 @@ export const showArtShow = async function() {
       <div class="info-detail">${info.signature}</div>
     `
     drawFileOnCanvas(dataURLtoFile(info.image, "image.png"), box.querySelector("canvas")) 
-  column.appendChild(box)
+    const removeButton = document.createElement("button")
+    removeButton.innerHTML = "Remove"
+    removeButton.onclick = async function() {
+      await deleteDoc(doc(db, "artShow", item.id))
+      location.reload()
+    }
+    box.appendChild(removeButton)
+    column.appendChild(box)
   })
 }
 
