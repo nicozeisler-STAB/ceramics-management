@@ -56,6 +56,25 @@ input[type=text]:focus {
 
 }
 
+input[type=password]{
+  border-width: 1px;
+  border-radius: 10px;
+  height: 10px;
+  width: 150px;
+  padding: 2%;
+  outline: none;
+  border-style: solid;
+  transition: 0.5s ease;
+  box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.172);
+  border: none;
+  margin-bottom: 3%;
+}
+
+input[type=password]:focus {
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.172);
+
+}
+
 .sectionTitle{
   font-size: xx-large;
 }
