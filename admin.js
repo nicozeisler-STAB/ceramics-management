@@ -22,10 +22,13 @@ const db = getFirestore(app)
  * @param {String} firingType - The firing type to display items of
  */
 export const showItems = async function(firingType){  
-  const filler=document.getElementById("filler")
   const column = document.getElementById("infoColumn")
   const snapshot = await getDocs(query(collection(db, firingType), orderBy("createdAt", "asc")))
   snapshot.forEach(item => {
+    const filler = document.getElementById("filler")
+    if (filler !== null) {
+        filler.remove()
+    }
     const info = item.data()
     const box = document.createElement("div")
     box.className = 'info-box'
@@ -34,9 +37,6 @@ export const showItems = async function(firingType){
       <canvas class="placeHolderCanvas"></canvas>
       <div class="info-detail">${info.signature}</div>
     `
-    if(box){
-        filler.remove()
-    }
     drawFileOnCanvas(dataURLtoFile(info.image, "image.png"), box.querySelector("canvas")) 
     const startFiringButton = document.createElement("button")
     startFiringButton.innerHTML = "Start Firing"
@@ -79,6 +79,10 @@ export const showFirings = async function() {
   const column = document.getElementById("infoColumn")
   const snapshot = await getDocs(query(collection(db, "firing")))
   snapshot.forEach(item => {
+    const filler = document.getElementById("filler")
+    if (filler !== null) {
+        filler.remove()
+    }
     const info = item.data()
     const box = document.createElement("div")
     box.className = 'info-box'
@@ -114,6 +118,10 @@ export const showArtShow = async function() {
   const column = document.getElementById("infoColumn")
   const snapshot = await getDocs(query(collection(db, "artShow")))
   snapshot.forEach(item => {
+    const filler = document.getElementById("filler")
+    if (filler !== null) {
+        filler.remove()
+    }
     const info = item.data()
     const box = document.createElement("div")
     box.className = "info-box"
