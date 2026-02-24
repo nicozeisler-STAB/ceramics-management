@@ -21,7 +21,8 @@ const db = getFirestore(app)
  * @author Nico Zeisler
  * @param {String} firingType - The firing type to display items of
  */
-export const showItems = async function(firingType){
+export const showItems = async function(firingType){  
+  const filler=document.getElementById("filler")
   const column = document.getElementById("infoColumn")
   const snapshot = await getDocs(query(collection(db, firingType), orderBy("createdAt", "asc")))
   snapshot.forEach(item => {
@@ -33,6 +34,9 @@ export const showItems = async function(firingType){
       <canvas class="placeHolderCanvas"></<div>
       <div class="info-detail">${info.signature}</div>
     `
+    if(box){
+        filler.remove()
+    }
     drawFileOnCanvas(dataURLtoFile(info.image, "image.png"), box.querySelector("canvas")) 
     const startFiringButton = document.createElement("button")
     startFiringButton.innerHTML = "Start Firing"
