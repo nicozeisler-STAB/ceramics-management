@@ -31,7 +31,7 @@ export const showItems = async function(firingType){
     box.className = 'info-box'
     box.innerHTML = `
       <div class="info-title">${info.studentName}</div>
-      <canvas class="placeHolderCanvas"></<div>
+      <canvas class="placeHolderCanvas"></canvas>
       <div class="info-detail">${info.signature}</div>
     `
     if(box){
@@ -84,7 +84,7 @@ export const showFirings = async function() {
     box.className = 'info-box'
     box.innerHTML = `
       <div class="info-title">${info.studentName}</div>
-      <canvas class="placeHolderCanvas"></<div>
+      <canvas class="placeHolderCanvas"></canvas>
       <div class="info-detail">${info.signature}</div>
     `
     drawFileOnCanvas(dataURLtoFile(info.image, "image.png"), box.querySelector("canvas")) 
@@ -119,7 +119,7 @@ export const showArtShow = async function() {
     box.className = "info-box"
     box.innerHTML = `
       <div class="info-title">${info.studentName}</div>
-      <canvas class="placeHolderCanvas"></<div>
+      <canvas class="placeHolderCanvas"></canvas>
       <div class="info-detail">${info.signature}</div>
     `
     drawFileOnCanvas(dataURLtoFile(info.image, "image.png"), box.querySelector("canvas")) 
