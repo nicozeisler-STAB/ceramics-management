@@ -39,6 +39,7 @@ export const showItems = async function(firingType){
     `
     drawFileOnCanvas(dataURLtoFile(info.image, "image.png"), box.querySelector("canvas")) 
     const startFiringButton = document.createElement("button")
+    startFiringButton.className = "trigger"
     startFiringButton.innerHTML = "Start Firing"
     startFiringButton.onclick = async function() {
       await addDoc(collection(db, "firing"), {
@@ -52,6 +53,7 @@ export const showItems = async function(firingType){
       location.reload()
     }
     const rejectButton = document.createElement("button")
+    rejectButton.className = "trigger"
     rejectButton.innerHTML = "Reject Request"
     rejectButton.onclick = async function() {
       const reason = prompt("This piece was rejected because:", "") || "of unspecified reasons"
@@ -93,6 +95,7 @@ export const showFirings = async function() {
     `
     drawFileOnCanvas(dataURLtoFile(info.image, "image.png"), box.querySelector("canvas")) 
     const completeButton = document.createElement("button")
+    completeButton.className = "trigger"
     completeButton.innerHTML = "Mark Complete"
     completeButton.onclick = async function() {
       const templateParams = {
@@ -132,6 +135,7 @@ export const showArtShow = async function() {
     `
     drawFileOnCanvas(dataURLtoFile(info.image, "image.png"), box.querySelector("canvas")) 
     const removeButton = document.createElement("button")
+    removeButton.className = "trigger"
     removeButton.innerHTML = "Remove"
     removeButton.onclick = async function() {
       await deleteDoc(doc(db, "artShow", item.id))
