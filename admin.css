@@ -122,3 +122,7 @@ button{
 button:hover{
   transform: translateY(-20%);
 }
+
+.trigger{
+  margin: 2%;
+}
