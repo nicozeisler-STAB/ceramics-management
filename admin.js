@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"
-import {getFirestore, collection, doc, getDocs, addDoc, query, orderBy, deleteDoc} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"
+import {getFirestore, collection, doc, getDocs, addDoc, query, orderBy, deleteDoc, limit} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"
 
 const firebaseConfig = {
   apiKey: "AIzaSyCAOfNj92YHafyu2sAdYSSsAPf5RcxZ2wg",
@@ -144,6 +144,29 @@ export const showArtShow = async function() {
     box.appendChild(removeButton)
     column.appendChild(box)
   })
+}
+
+/**
+ * Updates firings whenever a user logs in to finish all firings
+ * after a 36 hour delay
+ * @author Nico Zeisler
+ */
+export const updateFirings = async function() {
+  const snapshot = await getDocs(query(collection(db, "firing"), orderBy("createdAt", "asc"), limit(1)))
+  let info = snapshot.docs[0].data()
+  const timestampMs = info.createdAt.toMillis()
+  if (Date.now() - timestampMs >= 2 * 60 * 1000) {
+    const firings = await getDocs(query(collection(db, "firing")))
+    firings.forEach(item => {
+      info = snapshot.docs[0].data()
+      const templateParams = {
+        email: info.email,
+        name: info.studentName
+      }
+      await emailjs.send("service_0ksgos9","template_4f2oqvu", templateParams)
+      await deleteDoc(doc(db, "firing", item.id))
+    })
+  }
 }
 
 /**
