@@ -152,10 +152,13 @@ export const showArtShow = async function() {
  * @author Nico Zeisler
  */
 export const updateFirings = async function() {
+  console.log("Function exists")
   const snapshot = await getDocs(query(collection(db, "firing"), orderBy("createdAt", "asc"), limit(1)))
+  console.log("Query Success")
   let info = snapshot.docs[0].data()
   const timestampMs = info.createdAt.toMillis()
   if (Date.now() - timestampMs >= 2 * 60 * 1000) {
+    console.log("Date check succeeded")
     const firings = await getDocs(query(collection(db, "firing")))
     firings.forEach(item => {
       info = snapshot.docs[0].data()
