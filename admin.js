@@ -152,7 +152,7 @@ export const updateFirings = async function() {
   else {
     info = firingsSnap.docs[0].data()
   }
-  let info = firings.docs[0].data()
+  info = firings.docs[0].data()
   const timestampMs = info.createdAt.toMillis()
   if (Date.now() - timestampMs >= 36 * 60 * 60 * 1000) {
     firings.forEach(item => {
