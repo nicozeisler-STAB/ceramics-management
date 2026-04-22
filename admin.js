@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"
-import {getFirestore, collection, doc, getDocs, addDoc, query, orderBy, deleteDoc, limit} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"
+import {getFirestore, collection, doc, getDocs, addDoc, query, orderBy, deleteDoc} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"
 
 const firebaseConfig = {
   apiKey: "AIzaSyCAOfNj92YHafyu2sAdYSSsAPf5RcxZ2wg",
@@ -47,6 +47,7 @@ export const showItems = async function(firingType){
           image: info.image,
           signature: info.signature,
           email: info.email,
+          createdAt: serverTimestamp(),
           status: "firing"
       })
       await deleteDoc(doc(db, firingType, item.id))
@@ -94,19 +95,6 @@ export const showFirings = async function() {
       <div class="info-detail">${info.signature}</div>
     `
     drawFileOnCanvas(dataURLtoFile(info.image, "image.png"), box.querySelector("canvas")) 
-    const completeButton = document.createElement("button")
-    completeButton.className = "trigger"
-    completeButton.innerHTML = "Mark Complete"
-    completeButton.onclick = async function() {
-      const templateParams = {
-        email: info.email,
-        name: info.studentName
-      }
-      await emailjs.send("service_0ksgos9","template_4f2oqvu", templateParams)
-      await deleteDoc(doc(db, "firing", item.id))
-      location.reload()
-    }
-    box.appendChild(completeButton)
     column.appendChild(box)
   })
 }
@@ -152,22 +140,18 @@ export const showArtShow = async function() {
  * @author Nico Zeisler
  */
 export const updateFirings = async function() {
-  console.log("Function exists")
-  const snapshot = await getDocs(query(collection(db, "firing"), orderBy("createdAt", "asc"), limit(1)))
-  console.log("Query Success")
-  let info = snapshot.docs[0].data()
+  const firings = await getDocs(query(collection(db, "firing")))
+  let info = firings.docs[0].data()
   const timestampMs = info.createdAt.toMillis()
-  if (Date.now() - timestampMs >= 2 * 60 * 1000) {
-    console.log("Date check succeeded")
-    const firings = await getDocs(query(collection(db, "firing")))
+  if (Date.now() - timestampMs >= 36 * 60 * 60 * 1000) {
     firings.forEach(item => {
-      info = snapshot.docs[0].data()
-      const templateParams = {
+      info = item.data()
+      const emailParams = {
         email: info.email,
         name: info.studentName
       }
-      await emailjs.send("service_0ksgos9","template_4f2oqvu", templateParams)
-      await deleteDoc(doc(db, "firing", item.id))
+      emailjs.send("service_0ksgos9", "template_4f2oqvu", emailParams)
+      deleteDoc(doc(db, "firing", item.id))
     })
   }
 }
