@@ -143,7 +143,15 @@ export const updateFirings = async function() {
   if (sessionStorage.getItem("updatedFirings") != null) {
     return
   }  
+  sessionStorage.setItem("updatedFirings", true)
   const firings = await getDocs(query(collection(db, "firing")))
+  let info = null
+  if (firingsSnap.empty) {
+    return
+  } 
+  else {
+    info = firingsSnap.docs[0].data()
+  }
   let info = firings.docs[0].data()
   const timestampMs = info.createdAt.toMillis()
   if (Date.now() - timestampMs >= 36 * 60 * 60 * 1000) {
@@ -157,7 +165,6 @@ export const updateFirings = async function() {
       deleteDoc(doc(db, "firing", item.id))
     })
   }
-  sessionStorage.setItem("updatedFirings", true)
 }
 
 /**
