@@ -10,8 +10,12 @@
     import {login} from './authentication.js';
     window.login = login;
   </script>
+  <script type="module">
+    import {updateFirings} from './admin.js';
+    window.updateFirings = updateFirings;
+  </script>
 </head>
-<body>
+<body onload="updateFirings()">
   <h2 class="sectionTitle"><span>Login</span></h2>
   <br>
   <div class="box">
