@@ -140,6 +140,9 @@ export const showArtShow = async function() {
  * @author Nico Zeisler
  */
 export const updateFirings = async function() {
+  if (sessionStorage.getItem("updatedFirings") != null) {
+    return
+  }  
   const firings = await getDocs(query(collection(db, "firing")))
   let info = firings.docs[0].data()
   const timestampMs = info.createdAt.toMillis()
@@ -154,6 +157,7 @@ export const updateFirings = async function() {
       deleteDoc(doc(db, "firing", item.id))
     })
   }
+  sessionStorage.setItem("updatedFirings", true)
 }
 
 /**
