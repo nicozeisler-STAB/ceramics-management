@@ -49,7 +49,7 @@ export const showItems = async function(firingType){
           email: info.email,
           createdAt: serverTimestamp(),
           status: "firing"
-      })
+      }
       await deleteDoc(doc(db, firingType, item.id))
       location.reload()
     }
