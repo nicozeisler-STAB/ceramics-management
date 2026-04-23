@@ -153,7 +153,10 @@ export const updateFirings = async function() {
     info = firings.docs[0].data()
   }
   const timestampMs = info.createdAt.toMillis()
+  console.log("Updating firings after the following wait:")
+  console.log(Date.now() - timestampMs)
   if (Date.now() - timestampMs >= 3 * 60 * 1000) {
+    console.log("Clearing Collection")
     firings.forEach(item => {
       info = item.data()
       const emailParams = {
