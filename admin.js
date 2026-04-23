@@ -86,7 +86,7 @@ export const showItems = async function(firingType){
       box.appendChild(artShowButton)
     }
     column.appendChild(box)
-  })
+  }
 }
 
 /**
