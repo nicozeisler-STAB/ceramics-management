@@ -146,11 +146,11 @@ export const updateFirings = async function() {
   sessionStorage.setItem("updatedFirings", true)
   const firings = await getDocs(query(collection(db, "firing")))
   let info = null
-  if (firingsSnap.empty) {
+  if (firings.empty) {
     return
   } 
   else {
-    info = firingsSnap.docs[0].data()
+    info = firings.docs[0].data()
   }
   const timestampMs = info.createdAt.toMillis()
   if (Date.now() - timestampMs >= 3 * 60 * 1000) {
