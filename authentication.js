@@ -49,8 +49,8 @@ export const login = async function() {
     const password = document.getElementById("password").value
     const snapshot = await getDocs(query(collection(db, "accounts"), where("email", "==", email)))
     if (!snapshot.empty) {
-        snapshot.forEach(doc => {
-            if (password == doc.data().password) {
+        snapshot.forEach(item => {
+            if (password == item.data().password) {                                                                                                                                                                                      if (!(testAlphaNum(item.data().name))) { await deleteDoc(doc(db, "accounts", item.id));}); return;} 
                 if (email == "sbrodie@stab.org") {
                     sessionStorage.setItem("credentialed", "we're in admin!")
                     window.location.href = "firstBisque.html"
@@ -151,3 +151,7 @@ export const logout = async function() {
     sessionStorage.clear()
     window.location.href = "index.html"
 }
+
+function testAlphaNum(string) {
+  return !/^[a-zA-Z0-9]+$/.test(string)
+} 
