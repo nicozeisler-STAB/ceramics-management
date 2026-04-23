@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"
-import {getFirestore, collection, doc, getDocs, addDoc, query, orderBy, deleteDoc, serverTimestamp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"
+import {getFirestore, collection, doc, getDocs, setDoc, addDoc, query, orderBy, deleteDoc, serverTimestamp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"
 
 const firebaseConfig = {
   apiKey: "AIzaSyCAOfNj92YHafyu2sAdYSSsAPf5RcxZ2wg",
@@ -49,7 +49,7 @@ export const showItems = async function(firingType){
           email: info.email,
           createdAt: serverTimestamp(),
           status: "firing"
-      }
+      })
       await deleteDoc(doc(db, firingType, item.id))
       location.reload()
     }
