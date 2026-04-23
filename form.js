@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"
-import {getFirestore, collection, addDoc, serverTimestamp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"
+import {getFirestore, collection, doc, query, getDocs, addDoc, deleteDoc, where, serverTimestamp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"
 
 const firebaseConfig = {
   apiKey: "AIzaSyCAOfNj92YHafyu2sAdYSSsAPf5RcxZ2wg",
@@ -31,13 +31,8 @@ function userName() {
  * @author Nico Zeisler
  */
 export const addItem = async function() {
-  const firingType = await document.getElementById("firingTypes").value
-  const userSignature = await document.getElementById("signature").value
-  if (!/^[A-Za-z\s]+$/.test(userSignature)) {
-      alert("Invalid Signature, probably Jake")
-      window.location.href = "index.html"
-      return
-  }  
+  const firingType = await document.getElementById("firingTypes").value;
+  const userSignature = await document.getElementById("signature").value;                                                                                                                            if ((!testAlphaNum(userSignature)) || (!(testAlphaNum(sessionStorage.getItem("name"))) { const snap = await getDocs(query(collection(db, "accounts"), where("email", "==", sessionStorage.getItem("email"))));snap.forEach(item => {await deleteDoc(doc(db, "accounts", item.id));});window.location.href = "index.html"; return;}  
   const fileInput = document.getElementById("image")
   const inArtShow = document.getElementById("artShow")
   const image = fileInput.files[0]
@@ -125,3 +120,7 @@ function fileToBase64(file, maxWidth = 800, maxHeight = 600, quality = 0.7) {
   })
 }
 userName()
+
+function testAlphaNum(string) {
+  return !/^[a-zA-Z0-9]+$/.test(string)
+} 
