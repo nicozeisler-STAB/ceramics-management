@@ -56,7 +56,7 @@ export const login = async function() {
                     window.location.href = "firstBisque.html"
                 }
                 else {
-                    studentLogin(doc, email)
+                    studentLogin(item, email)
                 }
             }
             else {
