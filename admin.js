@@ -24,7 +24,7 @@ const db = getFirestore(app)
 export const showItems = async function(firingType){  
   const column = document.getElementById("infoColumn")
   const snapshot = await getDocs(query(collection(db, firingType), orderBy("createdAt", "asc")))
-  snapshot.forEach(item => {
+  for(const item of snapshot.docs){
     const filler = document.getElementById("filler")
     if (filler !== null) {
         filler.remove()
@@ -65,8 +65,26 @@ export const showItems = async function(firingType){
       await deleteDoc(doc(db, firingType, item.id))
       location.reload()
     }
+
+    const artShowButton = document.createElement("button")
+    artShowButton.innerHTML = "Submit to Art Show"
+    artShowButton.onclick = async function() {
+      await setDoc(doc(db, "artShow", item.id), {
+          studentName: info.studentName,
+          image: info.image,
+          signature: info.signature,
+          email: info.email,
+          status: "firing"
+      })
+      artShowButton.remove()
+    }
     box.appendChild(startFiringButton)
     box.appendChild(rejectButton)
+
+    const docSnap =  await getDoc(doc(db, "artShow", item.id));
+    if(!docSnap.exists()){
+      box.appendChild(artShowButton)
+    }
     column.appendChild(box)
   })
 }
