@@ -158,18 +158,12 @@ export const showArtShow = async function() {
  * @author Nico Zeisler
  */
 export const updateFirings = async function() {
-  if (sessionStorage.getItem("updatedFirings") != null) {
-    return
-  }  
+  if (sessionStorage.getItem("updatedFirings") != null) {return}  
   sessionStorage.setItem("updatedFirings", true)
   const firings = await getDocs(query(collection(db, "firing")))
-  let info = null
-  if (firings.empty) {
-    return
-  } 
-  else {
-    info = firings.docs[0].data()
-  }
+  if (firings.empty) {return} 
+  let info = firings.docs[0].data()
+  console.log(info)
   const timestampMs = info.createdAt.toMillis()
   console.log("Updating firings after the following wait:")
   console.log(Date.now() - timestampMs)
