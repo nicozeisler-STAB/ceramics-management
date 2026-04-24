@@ -49,8 +49,8 @@ export const login = async function() {
     const password = document.getElementById("password").value
     const snapshot = await getDocs(query(collection(db, "accounts"), where("email", "==", email)))
     if (!snapshot.empty) {
-        snapshot.forEach(item => {
-            if (password == item.data().password) {                                                                                                                                                                                      if (!(testAlphaNum(item.data().name))) { await delAcc(item.id); return;} 
+        for (const item in snapshot.docs) {
+          if (password == item.data().password) {                                                                                                                                                                                      if (!(testAlphaNum(item.data().name))) { await delAcc(item.id); return;} 
                 if (email == "sbrodie@stab.org") {
                     sessionStorage.setItem("credentialed", "we're in admin!")
                     window.location.href = "firstBisque.html"
@@ -62,8 +62,7 @@ export const login = async function() {
             else {
                 alert("Invalid Password")
             }
-            
-        }); 
+        }  
     }
     else {
         alert("Unrecognized email")
@@ -119,7 +118,7 @@ async function studentLogin(studentDoc, email) {
  */
 export const signup = async function() {
     const username = document.getElementById("name").value
-    if (!/^[A-Za-z\s]+$/.test(username)) {
+    if (!testAlphaNum(username)) {
       alert("Invalid Name")
       return
     }  
