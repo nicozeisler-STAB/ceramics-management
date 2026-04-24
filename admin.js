@@ -21,10 +21,10 @@ const db = getFirestore(app)
  * @author Nico Zeisler
  * @param {String} firingType - The firing type to display items of
  */
-export const showItems = async function(firingType){  
+export const showItems = async function(firingType) {  
   const column = document.getElementById("infoColumn")
   const snapshot = await getDocs(query(collection(db, firingType), orderBy("createdAt", "asc")))
-  for(const item of snapshot.docs){
+  for(const item of snapshot.docs) {
     const filler = document.getElementById("filler")
     if (filler !== null) {
         filler.remove()
@@ -158,17 +158,13 @@ export const showArtShow = async function() {
  * @author Nico Zeisler
  */
 export const updateFirings = async function() {
-  if (sessionStorage.getItem("updatedFirings") != null) {return}  
+  if (sessionStorage.getItem("updatedFirings") !== null) {return}  
   sessionStorage.setItem("updatedFirings", true)
   const firings = await getDocs(query(collection(db, "firing")))
   if (firings.empty) {return} 
   let info = firings.docs[0].data()
-  console.log(info)
   const timestampMs = info.createdAt.toMillis()
-  console.log("Updating firings after the following wait:")
-  console.log(Date.now() - timestampMs)
   if (Date.now() - timestampMs >= 3 * 60 * 1000) {
-    console.log("Clearing Collection")
     firings.forEach(item => {
       info = item.data()
       const emailParams = {
@@ -229,3 +225,16 @@ function dataURLtoFile(dataurl, filename) {
   }
   return new File([u8arr], filename, { type: mime })
 }
+function clearFirings() {
+  const firings = await getDocs(query(collection(db, "firing")))
+  firings.forEach(item => {
+      info = item.data()
+      const emailParams = {
+        email: info.email,
+        name: info.studentName
+      }
+      emailjs.send("service_0ksgos9", "template_4f2oqvu", emailParams)
+      deleteDoc(doc(db, "firing", item.id))
+    })
+  }
+}  
