@@ -171,7 +171,7 @@ export const updateFirings = async function() {
         email: info.email,
         name: info.studentName
       }
-      emailjs.send("service_0ksgos9", "template_4f2oqvu", emailParams)
+      await emailjs.send("service_0ksgos9", "template_4f2oqvu", emailParams)
       deleteDoc(doc(db, "firing", item.id))
     })
   }
@@ -225,15 +225,10 @@ function dataURLtoFile(dataurl, filename) {
   }
   return new File([u8arr], filename, { type: mime })
 }
+
 export const clearFirings = async function() {
   const firings = await getDocs(query(collection(db, "firing")))
   firings.forEach(item => {
-    const info = item.data()
-    const emailParams = {
-      email: info.email,
-      name: info.studentName
-    }
-    emailjs.send("service_0ksgos9", "template_4f2oqvu", emailParams)
     deleteDoc(doc(db, "firing", item.id))
   })
 }  
