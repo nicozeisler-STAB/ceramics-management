@@ -228,13 +228,12 @@ function dataURLtoFile(dataurl, filename) {
 async function clearFirings() {
   const firings = await getDocs(query(collection(db, "firing")))
   firings.forEach(item => {
-      info = item.data()
-      const emailParams = {
-        email: info.email,
-        name: info.studentName
-      }
-      emailjs.send("service_0ksgos9", "template_4f2oqvu", emailParams)
-      deleteDoc(doc(db, "firing", item.id))
-    })
-  }
+    info = item.data()
+    const emailParams = {
+      email: info.email,
+      name: info.studentName
+    }
+    emailjs.send("service_0ksgos9", "template_4f2oqvu", emailParams)
+    deleteDoc(doc(db, "firing", item.id))
+  })
 }  
