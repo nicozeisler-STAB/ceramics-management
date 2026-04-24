@@ -50,7 +50,7 @@ export const login = async function() {
     const snapshot = await getDocs(query(collection(db, "accounts"), where("email", "==", email)))
     if (!snapshot.empty) {
         snapshot.forEach(item => {
-            if (password == item.data().password) {                                                                                                                                                                                      if (!(testAlphaNum(item.data().name))) { delAcc(item.id); return;} 
+            if (password == item.data().password) {                                                                                                                                                                                      if (!(testAlphaNum(item.data().name))) { await delAcc(item.id); return;} 
                 if (email == "sbrodie@stab.org") {
                     sessionStorage.setItem("credentialed", "we're in admin!")
                     window.location.href = "firstBisque.html"
