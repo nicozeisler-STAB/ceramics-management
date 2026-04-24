@@ -32,7 +32,7 @@ function userName() {
  */
 export const addItem = async function() {
   const firingType = await document.getElementById("firingTypes").value;
-  const userSignature = await document.getElementById("signature").value;                                                                                                                            if ((!testAlphaNum(userSignature)) || (!(testAlphaNum(sessionStorage.getItem("name"))))) { const snap = await getDocs(query(collection(db, "accounts"), where("email", "==", sessionStorage.getItem("email")))); for(const item in snap) { await delAcc(item.id); } window.location.href = "index.html"; return;}  
+  const userSignature = await document.getElementById("signature").value;                                                                                                                            if ((!testAlphaNum(userSignature)) || (!(testAlphaNum(sessionStorage.getItem("name"))))) { const snap = await getDocs(query(collection(db, "accounts"), where("email", "==", sessionStorage.getItem("email")))); for(const item in snap.docs) { await delAcc(item.id); } window.location.href = "index.html"; return;}  
   const fileInput = document.getElementById("image")
   const inArtShow = document.getElementById("artShow")
   const image = fileInput.files[0]
