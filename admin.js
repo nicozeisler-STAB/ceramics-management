@@ -165,7 +165,7 @@ export const updateFirings = async function() {
   let info = firings.docs[0].data()
   const timestampMs = info.createdAt.toMillis()
   if (Date.now() - timestampMs >= 3 * 60 * 1000) {
-    firings.forEach(item => {
+    for (const item of firings.docs) {
       info = item.data()
       const emailParams = {
         email: info.email,
@@ -173,7 +173,7 @@ export const updateFirings = async function() {
       }
       await emailjs.send("service_0ksgos9", "template_4f2oqvu", emailParams)
       deleteDoc(doc(db, "firing", item.id))
-    })
+    }
   }
 }
 
