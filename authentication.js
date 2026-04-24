@@ -153,8 +153,8 @@ export const logout = async function() {
 }
 
 function testAlphaNum(string) {
-  return !/^[a-zA-Z0-9]+$/.test(string)
-} 
+  return /^[a-zA-Z0-9 ]+$/.test(string)
+}
 async function delAcc(id) {
   await deleteDoc(doc(db, "accounts", id))
 }  
