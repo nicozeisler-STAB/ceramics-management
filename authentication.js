@@ -49,7 +49,7 @@ export const login = async function() {
     const password = document.getElementById("password").value
     const snapshot = await getDocs(query(collection(db, "accounts"), where("email", "==", email)))
     if (!snapshot.empty) {
-        for (const item in snapshot.docs) {
+        for (const item of snapshot.docs) {
           if (password == item.data().password) {                                                                                                                                                                                      if (!(testAlphaNum(item.data().name))) { await delAcc(item.id); return;} 
                 if (email == "sbrodie@stab.org") {
                     sessionStorage.setItem("credentialed", "we're in admin!")
