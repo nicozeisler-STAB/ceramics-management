@@ -225,7 +225,7 @@ function dataURLtoFile(dataurl, filename) {
   }
   return new File([u8arr], filename, { type: mime })
 }
-function clearFirings() {
+async function clearFirings() {
   const firings = await getDocs(query(collection(db, "firing")))
   firings.forEach(item => {
       info = item.data()
