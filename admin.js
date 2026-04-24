@@ -163,6 +163,7 @@ export const updateFirings = async function() {
   const firings = await getDocs(query(collection(db, "firing")))
   if (firings.empty) {return} 
   let info = firings.docs[0].data()
+  console.log(info)
   const timestampMs = info.createdAt.toMillis()
   if (Date.now() - timestampMs >= 3 * 60 * 1000) {
     for (const item of firings.docs) {
