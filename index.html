@@ -17,8 +17,9 @@
     window.login = login;
   </script>
   <script type="module">
-    import {updateFirings} from './admin.js';
+    import {updateFirings, clearFirings} from './admin.js';
     window.updateFirings = updateFirings;
+    window.clearFirings = clearFirings;
   </script>
 </head>
 <body onload="updateFirings()">
