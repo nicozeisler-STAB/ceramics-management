@@ -69,6 +69,20 @@ ul li a:hover {
 .current:hover{
   background-color: rgba(0, 0, 0, 0);
 }
+/* formatting the div that contains the students stats*/
+.statBox{
+  background-color: rgba(117, 211, 243, 0.328);
+  border-radius: 8px 20px 8px 20px;
+  padding: 1rem;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  transition: background-color .7s ease;
+  transition: box-shadow .6s ease;
+  text-align: center;
+  justify-items: center;
+  width: 100%; 
+
+}
 
 /*formtting the div that contains the students' submission cards*/
 #infoColumn {
