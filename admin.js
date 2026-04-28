@@ -22,6 +22,19 @@ const db = getFirestore(app)
  * @param {String} firingType - The firing type to display items of
  */
 export const showItems = async function(firingType) {  
+
+  if (firingType == "stats") {
+    const column = document.getElementById("infoColumn")
+    const results = await getDocs(query(collection(db, "accounts")))
+    results.forEach(item => {
+      const itemInfo = item.data()
+      const box = document.createElement("div")
+      box.className = 'statBox'
+      box.innerHTML = itemInfo.name + "<br> Number of 1st Bisques: " + itemInfo.num1stB + "<br> Number of 2nd Bisques: " + itemInfo.num2ndB + "<br> Number of Glaze pieces: " + itemInfo.numGlaze
+      column.appendChild(box)
+    })
+  }
+  
   const column = document.getElementById("infoColumn")
   const snapshot = await getDocs(query(collection(db, firingType), orderBy("createdAt", "asc")))
   for(const item of snapshot.docs) {
@@ -50,6 +63,27 @@ export const showItems = async function(firingType) {
           createdAt: serverTimestamp(),
           status: "firing"
       })
+      
+      if (firingType == "firstBisque") {
+        console.log(info.studentName)
+        const snap = await getDocs(query(collection(db, "accounts"), where("name", "==", info.studentName)))
+        const ittem = snap.docs[0]
+        await updateDoc(doc(db, "accounts", ittem.id), { num1stB: ittem.data().num1stB + 1 })
+      }
+      else if (firingType == "secondBisque") {
+        console.log(info.studentName)
+        const snap = await getDocs(query(collection(db, "accounts"), where("name", "==", info.studentName)))
+        const ittem = snap.docs[0]
+        await updateDoc(doc(db, "accounts", ittem.id), { num2ndB: ittem.data().num2ndB + 1 })
+      }
+
+      else if (firingType == "glaze") {
+        console.log(info.studentName)
+        const snap = await getDocs(query(collection(db, "accounts"), where("name", "==", info.studentName)))
+        const ittem = snap.docs[0]
+        await updateDoc(doc(db, "accounts", ittem.id), { numGlaze: ittem.data().numGlaze + 1 })
+      }
+      
       await deleteDoc(doc(db, firingType, item.id))
       location.reload()
     }
