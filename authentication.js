@@ -134,6 +134,9 @@ export const signup = async function() {
           name: username,
           email: email,
           password: password,
+          num1stB: 0,
+          num2ndB: 0,
+          numGlaze: 0
       })
       window.location.href = "index.html"
     }
