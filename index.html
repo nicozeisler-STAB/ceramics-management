@@ -6,12 +6,22 @@
   <title>Landing Page</title>
   <link rel="stylesheet" href="login.css">
   <link rel="icon" href="blueLogo.png" type="image/png">
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    emailjs.init('KcsAfjLzWu6grZMjK')
+  </script>
+  <script type="module">
+    import {updateFirings, clearFirings} from './admin.js';
+    window.updateFirings = updateFirings;
+    window.clearFirings = clearFirings;
+  </script>
   <script type="module">
     import {login} from './authentication.js';
     window.login = login;
   </script>
 </head>
-<body>
+<body onload="updateFirings()">
   <h2 class="sectionTitle"><span>Login</span></h2>
   <br>
   <div class="box">
