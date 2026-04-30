@@ -208,7 +208,7 @@ export const updateFirings = async function() {
         email: info.email,
         name: info.studentName
       }
-      await emailjs.send("service_0ksgos9", "template_4f2oqvu", emailParams)
+      await emailjs.send("service_r0bpoq7", "template_7log4f2", emailParams)
       deleteDoc(doc(db, "firing", item.id))
     }
   }
