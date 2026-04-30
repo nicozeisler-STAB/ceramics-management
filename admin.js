@@ -26,7 +26,8 @@ export const showItems = async function(firingType) {
   /**
   * If statement thats triggered when the stats paged is pulled up. The page gets the users current stats from the 
   * accounts collection in firebase, and reflects how many of each piece a person has submitted in seperate divs.
-  */ @author Will Elias
+  * @author Will Elias
+  */ 
   if (firingType == "stats") {
     const column = document.getElementById("infoColumn")
     const results = await getDocs(query(collection(db, "accounts")))
