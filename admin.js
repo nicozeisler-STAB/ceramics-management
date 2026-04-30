@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"
-import {getFirestore, collection, doc, getDocs, query, where, setDoc, getDoc, addDoc, deleteDoc, orderBy, serverTimestamp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"
+import {getFirestore, collection, doc, getDocs, query, where, setDoc, getDoc, updateDoc, addDoc, deleteDoc, orderBy, serverTimestamp} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"
 
 const firebaseConfig = {
   apiKey: "AIzaSyCAOfNj92YHafyu2sAdYSSsAPf5RcxZ2wg",
@@ -22,7 +22,6 @@ const db = getFirestore(app)
  * @param {String} firingType - The firing type to display items of
  */
 export const showItems = async function(firingType) {  
-
   if (firingType == "stats") {
     const column = document.getElementById("infoColumn")
     const results = await getDocs(query(collection(db, "accounts")))
@@ -34,7 +33,6 @@ export const showItems = async function(firingType) {
       column.appendChild(box)
     })
   }
-  
   const column = document.getElementById("infoColumn")
   const snapshot = await getDocs(query(collection(db, firingType), orderBy("createdAt", "asc")))
   for(const item of snapshot.docs) {
@@ -63,7 +61,6 @@ export const showItems = async function(firingType) {
           createdAt: serverTimestamp(),
           status: "firing"
       })
-      
       if (firingType == "firstBisque") {
         console.log(info.studentName)
         const snap = await getDocs(query(collection(db, "accounts"), where("name", "==", info.studentName)))
@@ -76,14 +73,12 @@ export const showItems = async function(firingType) {
         const ittem = snap.docs[0]
         await updateDoc(doc(db, "accounts", ittem.id), { num2ndB: ittem.data().num2ndB + 1 })
       }
-
       else if (firingType == "glaze") {
         console.log(info.studentName)
         const snap = await getDocs(query(collection(db, "accounts"), where("name", "==", info.studentName)))
         const ittem = snap.docs[0]
         await updateDoc(doc(db, "accounts", ittem.id), { numGlaze: ittem.data().numGlaze + 1 })
       }
-      
       await deleteDoc(doc(db, firingType, item.id))
       location.reload()
     }
@@ -99,7 +94,6 @@ export const showItems = async function(firingType) {
       await deleteDoc(doc(db, firingType, item.id))
       location.reload()
     }
-
     const artShowButton = document.createElement("button")
     artShowButton.innerHTML = "Submit to Art Show"
     artShowButton.onclick = async function() {
@@ -114,7 +108,6 @@ export const showItems = async function(firingType) {
     }
     box.appendChild(startFiringButton)
     box.appendChild(rejectButton)
-
     const docSnap =  await getDoc(doc(db, "artShow", item.id));
     if(!docSnap.exists()){
       box.appendChild(artShowButton)
