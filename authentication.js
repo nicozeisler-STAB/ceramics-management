@@ -127,6 +127,12 @@ export const signup = async function() {
       alert("Invalid Email")
       return
     }
+  /**
+  * Added new paramters when an acount is created, for statistics later on (number of each piece). Additionally,
+  * I made a function that has since been delted, that added these stats to the acounts that existed before this code
+  * was added.
+  * @author Will Elias
+  */
     const password = document.getElementById("password").value
     const snapshot = await getDocs(query(collection(db, "accounts"), where("email", "==", email)))
     if (snapshot.empty) {
