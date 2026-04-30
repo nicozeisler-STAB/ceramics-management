@@ -22,6 +22,11 @@ const db = getFirestore(app)
  * @param {String} firingType - The firing type to display items of
  */
 export const showItems = async function(firingType) {  
+
+  /**
+  * If statement thats triggered when the stats paged is pulled up. The page gets the users current stats from the 
+  * accounts collection in firebase, and reflects how many of each piece a person has submitted in seperate divs.
+  */ @author Will Elias
   if (firingType == "stats") {
     const column = document.getElementById("infoColumn")
     const results = await getDocs(query(collection(db, "accounts")))
@@ -61,20 +66,24 @@ export const showItems = async function(firingType) {
           createdAt: serverTimestamp(),
           status: "firing"
       })
+
+      /**
+      * These three statements manage updates for a user acounts. So when a students pieces if fired,  
+      * based on the firing type, the firebase account field that matches the students name, for that specific 
+      * firing type will be updated to add another number(or piece) to their stat/field.
+      * @author Will Elias
+      */
       if (firingType == "firstBisque") {
-        console.log(info.studentName)
         const snap = await getDocs(query(collection(db, "accounts"), where("name", "==", info.studentName)))
         const ittem = snap.docs[0]
         await updateDoc(doc(db, "accounts", ittem.id), { num1stB: ittem.data().num1stB + 1 })
       }
       else if (firingType == "secondBisque") {
-        console.log(info.studentName)
         const snap = await getDocs(query(collection(db, "accounts"), where("name", "==", info.studentName)))
         const ittem = snap.docs[0]
         await updateDoc(doc(db, "accounts", ittem.id), { num2ndB: ittem.data().num2ndB + 1 })
       }
       else if (firingType == "glaze") {
-        console.log(info.studentName)
         const snap = await getDocs(query(collection(db, "accounts"), where("name", "==", info.studentName)))
         const ittem = snap.docs[0]
         await updateDoc(doc(db, "accounts", ittem.id), { numGlaze: ittem.data().numGlaze + 1 })
