@@ -22,7 +22,6 @@ const db = getFirestore(app)
  * @param {String} firingType - The firing type to display items of
  */
 export const showItems = async function(firingType) {  
-
   /**
   * If statement thats triggered when the stats paged is pulled up. The page gets the users current stats from the 
   * accounts collection in firebase, and reflects how many of each piece a person has submitted in seperate divs.
@@ -67,7 +66,6 @@ export const showItems = async function(firingType) {
           createdAt: serverTimestamp(),
           status: "firing"
       })
-
       /**
       * These three statements manage updates for a user acounts. So when a students pieces if fired,  
       * based on the firing type, the firebase account field that matches the students name, for that specific 
@@ -96,12 +94,18 @@ export const showItems = async function(firingType) {
     rejectButton.className = "trigger"
     rejectButton.innerHTML = "Reject Request"
     rejectButton.onclick = async function() {
-      const reason = prompt("This piece was rejected because:", "") || "of unspecified reasons"
+      const rationale = prompt("This piece was rejected because:", "") || "of unspecified reasons"
       await addDoc(collection(db, "rejected"), {
-        text: "Your piece was rejected because " + reason + ". Please resubmit with changes",
+        text: "Your piece was rejected because " + rationale + ". Please resubmit with changes",
         email: info.email,
       })
       await deleteDoc(doc(db, firingType, item.id))
+      const emailParams = {
+        email: info.email,
+        name: info.studentName,
+        reason: rationale
+      }
+      await emailjs.send("service_r0bpoq7", "template_j208swa", emailParams)
       location.reload()
     }
     const artShowButton = document.createElement("button")
