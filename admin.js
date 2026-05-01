@@ -129,7 +129,6 @@ export const showItems = async function(firingType) {
     column.appendChild(box)
   }
 }
-
 /**
  * Queries firebase for all entries in the currently firing collection, converts the base64 data
  * to a url using a helper function, and then adds it to a target canvas. It also appends
@@ -157,7 +156,6 @@ export const showFirings = async function() {
     column.appendChild(box)
   })
 }
-
 /**
  * Queries firebase for all entries in the currently artShow collection, converts the base64 data
  * to a url using a helper function, and then adds it to a target canvas. Also includes a remove
@@ -192,10 +190,9 @@ export const showArtShow = async function() {
     column.appendChild(box)
   })
 }
-
 /**
- * Updates firings whenever a user logs in to finish all firings
- * after a 36 hour delay
+ * Updates firings whenever a user opens the page for the first time in a session
+ * to finish all firings and send the appropriate emails 36 hours after they started firing
  * @author Nico Zeisler
  */
 export const updateFirings = async function() {
@@ -204,9 +201,8 @@ export const updateFirings = async function() {
   const firings = await getDocs(query(collection(db, "firing")))
   if (firings.empty) {return} 
   let info = firings.docs[0].data()
-  console.log(info)
   const timestampMs = info.createdAt.toMillis()
-  if (Date.now() - timestampMs >= 3 * 60 * 1000) {
+  if (Date.now() - timestampMs >= 36 * 60 * 60 * 1000) {
     for (const item of firings.docs) {
       info = item.data()
       const emailParams = {
@@ -218,7 +214,6 @@ export const updateFirings = async function() {
     }
   }
 }
-
 /**
  * Draws the given file on the given target canvas scaled down to meet width and/or
  * height constraints.
@@ -248,7 +243,6 @@ function drawFileOnCanvas(file, canvas) {
   }
   reader.readAsDataURL(file)
 }
-
 /**
  * Helper function to convert dataUrls from firebase into usable image files
  * @author Will Elias
@@ -267,10 +261,3 @@ function dataURLtoFile(dataurl, filename) {
   }
   return new File([u8arr], filename, { type: mime })
 }
-
-export const clearFirings = async function() {
-  const firings = await getDocs(query(collection(db, "firing")))
-  firings.forEach(item => {
-    deleteDoc(doc(db, "firing", item.id))
-  })
-}  
