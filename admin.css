@@ -97,6 +97,19 @@ ul li a:hover {
 
 }
 
+.statBox {
+  background-color: rgba(117, 211, 243, 0.328);
+  border-radius: 8px 20px 8px 20px;
+  padding: 1rem;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  transition: background-color .7s ease;
+  transition: box-shadow .6s ease;
+  text-align: center;
+  justify-items: center;
+  width: 100%; 
+}
+
 .info-box:hover {
   box-shadow:
     5px 5px 0 #ac80a068,
