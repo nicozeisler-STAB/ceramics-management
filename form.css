@@ -8,6 +8,12 @@
   font-weight: bold;
 }
 
+/*formats the div for the logout button and username*/
+.center2 {
+  display: flex;
+  justify-content: left;
+}
+
 
 /*formats everyting belwo the logout button and username*/
 body {
