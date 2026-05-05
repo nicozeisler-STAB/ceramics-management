@@ -108,6 +108,12 @@ export const showItems = async function(firingType) {
       await emailjs.send("service_r0bpoq7", "template_j208swa", emailParams)
       location.reload()
     }
+
+    /**
+    *Lines 117-132 check if a student's submission box exists in the art show. 
+    *If it does not, it creates a "submit to art show" button which, when clicked, 
+    *will create an identical document in the art show and remove the button from that item.
+    */
     const artShowButton = document.createElement("button")
     artShowButton.innerHTML = "Submit to Art Show"
     artShowButton.onclick = async function() {
@@ -120,12 +126,13 @@ export const showItems = async function(firingType) {
       })
       artShowButton.remove()
     }
-    box.appendChild(startFiringButton)
-    box.appendChild(rejectButton)
-    const docSnap =  await getDoc(doc(db, "artShow", item.id));
+        const docSnap =  await getDoc(doc(db, "artShow", item.id));
     if(!docSnap.exists()){
       box.appendChild(artShowButton)
     }
+    
+    box.appendChild(startFiringButton)
+    box.appendChild(rejectButton)
     column.appendChild(box)
   }
 }
