@@ -34,7 +34,29 @@ export const showItems = async function(firingType) {
       const itemInfo = item.data()
       const box = document.createElement("div")
       box.className = 'statBox'
-      box.innerHTML = itemInfo.name + "<br> Number of 1st Bisques: " + itemInfo.num1stB + "<br> Number of 2nd Bisques: " + itemInfo.num2ndB + "<br> Number of Glaze pieces: " + itemInfo.numGlaze
+      const nameRow = document.createElement('div')
+      const statRow = document.createElement('div')
+      statRow.className = 'statRow'
+      const name = document.createElement("h2")
+      name.className = 'statsName'
+      const stat1 = document.createElement("div")
+      stat1.className = 'statSection'
+      const stat2 = document.createElement("div")
+      stat2.className = 'statSection'
+      const stat3 = document.createElement("div")
+      stat3.className = 'statSection'
+
+      box.appendChild(nameRow)
+      box.appendChild(statRow)
+      nameRow.appendChild(name)
+      statRow.appendChild(stat1)
+      statRow.appendChild(stat2)
+      statRow.appendChild(stat3)
+
+      name.innerHTML = itemInfo.name
+      stat1.innerHTML = "Number of 1st bisques: <br>" + itemInfo.num1stB
+      stat2.innerHTML = "Number of 2nd bisques: <br>" + itemInfo.num2ndB 
+      stat3.innerHTML = "Number of glaze pieces: <br>" + itemInfo.numGlaze
       column.appendChild(box)
     })
   }
