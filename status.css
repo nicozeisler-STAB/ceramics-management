@@ -28,6 +28,9 @@ p {
   border:none;
   transition: transform .3s ease;
   justify-content: left;
+  justify-self: left;
+  float: left;
+  font-size: 20px;
 }
 /*animates the log out button on hover*/
 .button:hover {
@@ -40,19 +43,25 @@ p {
   height: auto;
   margin: 0;
   justify-content: left;
+  justify-self: left;
 }
 
 /*formats the user's name*/
 .username {
   padding: 0;
-  width: 100%;
+  width: 125%;
   margin-top: 2%;
   font-size: 22px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
   display: flex;
   gap: 0px;
-  justify-content: center;
+  align-items: center;
+}
+
+#username{
+  margin-left: 25%;
+  font-size: 30px;
 }
 
 /*formats the area beneath the username and log out button*/
