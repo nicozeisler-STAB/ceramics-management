@@ -1,9 +1,14 @@
-/*CSS page for form.html*/
-/*formats the username at the top of the page*/
 .username {
   font-size: 30px;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
+  margin-top: 1%;
+  margin-left: 2%;
+  font-size: 22px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
 }
 
 /*formats everyting belwo the logout button and username*/
@@ -38,23 +43,12 @@ body {
 
 /*formats the size of the logout button image*/
 img {
-  width: 900%;
+  width: 90%;
   height: auto;
   transition: transform .3s ease;
 }
 img:hover{
   transform: translateY(-5%);
-}
-
-/*styles the name of the user*/
-.username {
-  margin-top: 1%;
-  margin-left: 2%;
-  font-size: 22px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
 }
 
 /*formats the log out button (including the image and the "log out" text*/
@@ -92,7 +86,7 @@ button:hover {
 }
 
 /*formats the signature field*/
-input[type=text]{
+input[type=text] {
   border-radius: 10px;
   height: 10px;
   width: 150px;
