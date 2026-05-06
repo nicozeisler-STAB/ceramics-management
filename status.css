@@ -38,6 +38,7 @@ p {
   width: 100%;
   height: auto;
   margin: 0;
+  justify-content: left;
 }
 
 /*formats the user's name*/
@@ -81,9 +82,9 @@ body {
   font-weight: bold;
   box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.167);
   transition: transform .3s ease;
-  padding:2%;
+  padding: 2%;
 }
 /*creates the animation on hover for the image box*/
-.centerbox:hover{
+.centerbox:hover {
   transform: translateY(-4%);
 }
