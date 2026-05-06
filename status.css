@@ -27,6 +27,7 @@ p {
   background-color: white;
   border:none;
   transition: transform .3s ease;
+  justify-content: left;
 }
 /*animates the log out button on hover*/
 .button:hover {
