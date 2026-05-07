@@ -17,14 +17,12 @@
     window.authenticate = authenticate
     window.logout = logout
   </script>
-  <div class="center2">
-  <div class="headerBox">
-    <button type="button" style="width:5%;margin-right:22%;justify-content:left;" onclick="logout()"> 
-      <img src="user.jpg">
+  <div class="username">
+    <button class="button" type="button" style="width:5%;margin-right:5%;" onclick="logout()"> 
+      <img class="userImg" src="user.jpg">
       Log Out
     </button>
-    <p class="username" id="username"></p>
-  </div>
+    <p id="username"></p>
   </div>
 </head>
 <body onload="authenticate()">
