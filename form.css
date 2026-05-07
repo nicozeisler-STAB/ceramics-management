@@ -1,16 +1,18 @@
+/*formats the user's name*/
 .username {
+  padding: 0;
+  width: 125%;
   margin-top: 2%;
-  margin-left: 2%;
   font-size: 22px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
   display: flex;
+  gap: 0px;
   align-items: center;
-
 }
 
 #username{
-  margin-left: 18%;
+  margin-left: 25%;
   font-size: 30px;
 }
 /*formats everyting belwo the logout button and username*/
@@ -43,17 +45,32 @@ body {
   box-shadow: 12px 14px 16px rgba(0, 0, 0, 0.172);
 }
 
-/*formats the size of the logout button image*/
-img {
-  width: 150%;
-  height: auto;
+/*formats the log out button (including the image and the "log out" text*/
+.button {
+  margin-left: 2%;
+  margin-right: 0;
+  padding: 0;
+  background-color: white;
+  border:none;
   transition: transform .3s ease;
+  justify-content: left;
+  justify-self: left;
+  float: left;
+  font-size: 20px;
 }
-img:hover{
+/*animates the log out button on hover*/
+.button:hover {
   transform: translateY(-5%);
 }
 
-/*formats the log out button (including the image and the "log out" text*/
+/*formats the log out button image*/
+.userImg {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  justify-content: left;
+  justify-self: left;
+}
 
 /*styles the "submit" button*/
 .submit {
