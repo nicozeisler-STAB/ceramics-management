@@ -29,7 +29,7 @@ export const showItems = async function(firingType) {
   */ 
   if (firingType == "stats") {
     const column = document.getElementById("infoColumn")
-    const results = await getDocs(query(collection(db, "accounts")))
+    const results = await getDocs(query(collection(db, "accounts"), orderBy("numGlaze", "desc")))
     results.forEach(item => {
       const itemInfo = item.data()
       const box = document.createElement("div")
@@ -59,6 +59,7 @@ export const showItems = async function(firingType) {
       stat3.innerHTML = "Number of glaze pieces: <br>" + itemInfo.numGlaze
       column.appendChild(box)
     })
+    return
   }
   const column = document.getElementById("infoColumn")
   const snapshot = await getDocs(query(collection(db, firingType), orderBy("createdAt", "asc")))
