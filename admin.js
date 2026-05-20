@@ -29,7 +29,7 @@ export const showItems = async function(firingType) {
   */ 
   if (firingType == "stats") {
     const column = document.getElementById("infoColumn")
-    const results = await getDocs(query(collection(db, "accounts"), orderBy("numGlaze", "desc")))
+    const results = await getDocs(query(collection(db, "accounts"), orderBy("leaderboard", "desc")))
     results.forEach(item => {
       const itemInfo = item.data()
       const box = document.createElement("div")
@@ -98,17 +98,26 @@ export const showItems = async function(firingType) {
       if (firingType == "firstBisque") {
         const snap = await getDocs(query(collection(db, "accounts"), where("name", "==", info.studentName)))
         const ittem = snap.docs[0]
-        await updateDoc(doc(db, "accounts", ittem.id), { num1stB: ittem.data().num1stB + 1 })
+        await updateDoc(doc(db, "accounts", ittem.id), { 
+          num1stB: ittem.data().num1stB + 1,
+          leaderboard: ittem.data().leaderboard + 0.75
+        })
       }
       else if (firingType == "secondBisque") {
         const snap = await getDocs(query(collection(db, "accounts"), where("name", "==", info.studentName)))
         const ittem = snap.docs[0]
-        await updateDoc(doc(db, "accounts", ittem.id), { num2ndB: ittem.data().num2ndB + 1 })
+        await updateDoc(doc(db, "accounts", ittem.id), { 
+          num2ndB: ittem.data().num2ndB + 1,
+          leaderboard: ittem.data().leaderboard + 1
+        })
       }
       else if (firingType == "glaze") {
         const snap = await getDocs(query(collection(db, "accounts"), where("name", "==", info.studentName)))
         const ittem = snap.docs[0]
-        await updateDoc(doc(db, "accounts", ittem.id), { numGlaze: ittem.data().numGlaze + 1 })
+        await updateDoc(doc(db, "accounts", ittem.id), { 
+          numGlaze: ittem.data().numGlaze + 1,
+          leaderboard: ittem.data().leaderboard + 1.25
+        })
       }
       await deleteDoc(doc(db, firingType, item.id))
       location.reload()
