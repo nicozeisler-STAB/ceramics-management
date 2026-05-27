@@ -40,9 +40,9 @@ export const adminAuthenticate = async function() {
     })
 }
 /**
- * Logs the user in using Firebase Authentication services according to the info in the form. If the password matches any found student 
- * accounts it continues to studentLogin, otherwise it alerts for unrecognized email or invalid password. 
- * If the password and email match Ms. Brodie's, it credentials the user and sends them to the first bisque page.
+ * Logs the user in using Firebase Authentication services according to the info in the form. 
+ * If the password and email match Ms. Brodie's or Mr. Phillips, it credentials the user and sends them to the first bisque page,
+ * otherwise it logs them in as a student.
  * @author Nico Zeisler
  */
 export const login = async function() {
